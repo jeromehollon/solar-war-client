@@ -1,0 +1,81 @@
+
+#galaxy-map {
+  height: 1500px;
+  width: 3000px;
+  max-height: 80%;
+  background-color: #dddddd;
+  position: relative;
+  overflow: hidden;
+
+  background: url("../img/bg-map.png") no-repeat center center;
+  background-size: cover;
+
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.star, .planet {
+  position: absolute;
+  border-radius: 50%;
+
+  display: inline-block;
+  background-size: cover;
+}
+.star {
+  height: 80px;
+  width: 80px;
+}
+.planet {
+  height: 50px;
+  width: 50px;
+
+}
+
+.star-label, .planet-label {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+  height: 1em;
+  text-align: center;
+}
+
+.star-type-NORMAL {
+  background-image: url("../img/stars/star-type-normal.png");
+}
+
+.planet-type-NORMAL {
+  background-image: url("../img/planets/planet-type-normal.png");
+}
+
+.planet-type-EARTH_LIKE {
+  background-image: url("../img/planets/planet-type-earth-like.png");
+}
+
+.planet-type-ICE {
+  background-image: url("../img/planets/planet-type-ice.png");
+}
+
+.planet-type-MOLTEN {
+  background-image: url("../img/planets/planet-type-molten.png");
+}
+
+.planet-type-GIANT {
+  height: 60px;
+  width: 60px;
+  background-image: url("../img/planets/planet-type-giant.png");
+}
+
+.planet-type-SMALL {
+  height: 30px;
+  width: 30px;
+  background-image: url("../img/planets/planet-type-small.png");
+}
+
+.planet-type-BARREN {
+  background-image: url("../img/planets/planet-type-barren.png");
+}

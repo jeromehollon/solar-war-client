@@ -1,0 +1,13 @@
+<div id="galaxy-map">
+    <p>Galaxy Map</p>
+    <% _.each(stars, function(star) { %>
+        <span class="star star-type-<%= star.starType %>" id="star-<%= star.id %>" data-x="<%= star.x %>" data-y="<%= star.y %>">
+            <span class="star-label"><%= star.name %></span>
+        </span>
+    <% }); %>
+    <% _.each(planets, function(planet) { %>
+        <span class="planet planet-type-<%= planet.planetType %>" id="planet-<%= planet.id %>" data-x="<%= planet.x %>" data-y="<%= planet.y %>">
+            <span class="planet-label"><%= planet.name %></span>
+        </span>
+    <% }); %>
+</div>

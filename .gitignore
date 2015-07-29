@@ -1,0 +1,13 @@
+#Intellij
+*.iml
+.idea/
+
+#maven
+target/
+
+
+#other
+logs/
+
+#cordova/phonegap
+src/.cordova
