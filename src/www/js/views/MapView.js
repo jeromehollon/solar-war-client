@@ -3,10 +3,8 @@ app.views.MapView = Backbone.View.extend({
   el: "#container",
 
   initialize: function() {
-    _(this).bindAll("render");
+    _(this).bindAll("render", "starClick", "planetClick");
 
-
-    this.starViews = [];
     this.collection = new app.models.GalaxyCollection();
 
     this.collection.bind("reset", this.render);
@@ -18,11 +16,15 @@ app.views.MapView = Backbone.View.extend({
       //we've not loaded yet, so just wait
       return this;
     }
-    this.stars = this.collection.models[0].attributes.stars;
-    this.planets = this.collection.models[0].attributes.planets;
+
+    this.stars = this.collection.starCollection.models;
+    this.planets = this.collection.planetCollection.models;
 
 
-    this.$el.html(this.template({stars: this.stars, planets: this.planets}));
+    this.$el.html(this.template({
+      stars: this.collection.starCollection,
+      planets: this.collection.planetCollection
+    }));
 
     $("#galaxy-map").on("mousedown", this.mousedown);
     $("#galaxy-map").on("mouseup", this.mouseup);
@@ -30,19 +32,38 @@ app.views.MapView = Backbone.View.extend({
 
     this.renderStars();
 
+    $(this.$el).on("click", this.click);
+    $(".star").on("click", this.starClick);
+    $(".planet").on("click", this.planetClick);
+
     return this;
   },
 
   events: {
-    "click .back-button": "back",
     "reset": "render"
   },
 
-  back: function() {
-    window.history.back();
-    return false;
+  click: function(event){
+    $(".planet.active").removeClass("active");
   },
 
+  starClick: function(event){
+    var star = this.collection.starCollection.findWhere({
+      id: $(event.currentTarget).data("id")
+    });
+    console.log("Clicked on:")
+    console.log(star.get("name"));
+  },
+  planetClick: function(event){
+    var planet = this.collection.planetCollection.findWhere({
+      id: $(event.currentTarget).data("id")
+    });
+
+    $(".planet.active").removeClass("active");
+    $("#planet-" + planet.id).addClass("active");
+
+    event.stopPropagation();
+  },
 
   // click and drag magic
   dragging: false,
@@ -73,8 +94,6 @@ app.views.MapView = Backbone.View.extend({
   },
 
   renderStars: function() {
-    console.log("Loaded galaxy...appending stars.");
-
     var minX = 0;
     var minY = 0;
     var maxX = 0;
@@ -83,20 +102,20 @@ app.views.MapView = Backbone.View.extend({
     var scale = 5;
 
     _.each(this.stars, function(star){
-      if(star.x < minX) {
-        minX = star.x;
+      if(star.get("x") < minX) {
+        minX = star.get("x");
       }
 
-      if(star.y < minY) {
-        minY = star.y;
+      if(star.get("y") < minY) {
+        minY = star.get("y");
       }
 
-      if(star.x > maxX) {
-        maxX = star.x;
+      if(star.get("x") > maxX) {
+        maxX = star.get("x");
       }
 
-      if(star.y > maxY) {
-        maxY = star.y;
+      if(star.get("y") > maxY) {
+        maxY = star.get("y");
       }
     });
 
@@ -105,11 +124,8 @@ app.views.MapView = Backbone.View.extend({
     var offsetY = -minY;
 
     positionStar = function() {
-      var x = $(this).data("x") + offsetX;
-      var y = $(this).data("y") + offsetY;
-
-      x = x * scale;
-      y = y * scale;
+      var x = $(this).data("x") * scale + offsetX;
+      var y = $(this).data("y") * scale + offsetY;
 
       x = x + "px";
       y = y + "px";
@@ -124,8 +140,8 @@ app.views.MapView = Backbone.View.extend({
     $(".planet").each(positionStar);
 
     //Scroll to old earth
-    $("#galaxy-map").scrollTop(offsetY * scale);
-    $("#galaxy-map").scrollLeft(offsetX * scale);
+    $("#galaxy-map").scrollTop(offsetY);
+    $("#galaxy-map").scrollLeft(offsetX);
   }
 
 });

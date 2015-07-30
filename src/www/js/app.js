@@ -21,7 +21,6 @@ $(document).on("ready", function () {
   $.each(loaditems, function(index, view) {
     if (app.views[view]) {
       deferreds.push($.get('tpl/' + view + '.html', function(data) {
-        console.log("%s: %s", view, data);
         app.views[view].prototype.template = _.template(data);
       }, 'html'));
     } else {
@@ -30,7 +29,6 @@ $(document).on("ready", function () {
   });
 
   $.when.apply(null, deferreds).done(function(){
-    console.log("Fully loaded views.");
     //app.router.navigate("map", true);
   });
 

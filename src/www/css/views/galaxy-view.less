@@ -2,7 +2,7 @@
 #galaxy-map {
   height: 1500px;
   width: 3000px;
-  max-height: 80%;
+  max-height: 100%;
   background-color: #dddddd;
   position: relative;
   overflow: hidden;
@@ -14,14 +14,28 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+
+  z-index: 1;
 }
 
 .star, .planet {
   position: absolute;
   border-radius: 50%;
+  margin: 1px; /* to hide the box changes when adding a boarder */
 
   display: inline-block;
   background-size: cover;
+
+  z-index: 2;
+
+  &.active {
+    border: 1px solid white;
+    margin: 0px; /* to hide the box changes when adding a boarder */
+
+    .star-label.right, .star-label.left, .planet-label.left, .planet-label.right {
+      display: block;
+    }
+  }
 }
 .star {
   height: 80px;
@@ -30,18 +44,69 @@
 .planet {
   height: 50px;
   width: 50px;
-
 }
 
 .star-label, .planet-label {
   position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
+  font-family: "Roboto Condensed";
 
   margin: auto;
-  height: 1em;
-  text-align: center;
+  z-index: 3;
+
+  .label {
+    color: #333;
+    font-weight: bold;
+  }
+
+  &.top {
+    top: -25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  &.right {
+    top: 0px;
+    bottom: 0;
+    right: -140px;
+  }
+  &.bottom {
+    bottom: -20px;
+    left: -25px;
+    right: -25px;
+    text-align: center;
+    width: 100px;
+  }
+  &.left {
+    top: 0px;
+    bottom: 0;
+    left: -140px;
+  }
+
+  &.left, &.right {
+    text-align: left;
+    font-size: 80%;
+    display: none;
+
+    background: rgba(128,128,128, 1);
+    border-radius: 5px;
+    border: 2px solid #2D8DFA;
+    z-index: 4;
+
+    padding: 1px;
+    width: 120px;
+    height: 50px;
+
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
 }
 
 .star-type-NORMAL {
