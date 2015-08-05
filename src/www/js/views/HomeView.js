@@ -5,26 +5,9 @@ app.views.HomeView = Backbone.View.extend({
   },
 
   render: function () {
-    console.log("Rendering home view.");
     this.$el.html(this.template());
-    //$('.scroller', this.el).append(this.searchresultsView.render().el);
+    $("a", this.$el).on("click", app.linkClick);
     return this;
-  },
-
-  events: {
-    "keyup .search-key":    "search",
-    "keypress .search-key": "onkeypress"
-  },
-
-  search: function (event) {
-    var key = $('.search-key').val();
-    this.searchResults.fetch({reset: true, data: {name: key}});
-  },
-
-  onkeypress: function (event) {
-    if (event.keyCode === 13) { // enter key pressed
-      event.preventDefault();
-    }
   }
 
 });

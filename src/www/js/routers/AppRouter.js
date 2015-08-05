@@ -3,7 +3,8 @@ app.routers.AppRouter = Backbone.Router.extend({
   routes: {
     "":           "loadScreen",
     "home":       "home",
-    "map":       "map"
+    "map":        "map",
+    "about":      "about"
   },
 
   initialize: function () {
@@ -26,17 +27,27 @@ app.routers.AppRouter = Backbone.Router.extend({
 
   home: function () {
     // Since the home view never changes, we instantiate it and render it only once
-    if (!app.homeView) {
-      app.homeView = new app.views.HomeView();
+    if (app.homeView) {
       app.homeView.render();
     } else {
-      app.homeView.delegateEvents(); // delegate events when the view is recycled
+      app.homeView = new app.views.HomeView();
+      app.homeView.render();
     }
   },
 
   map: function(){
     app.mapView = new app.views.MapView();
     app.mapView.render();
+  },
+
+  about: function(){
+    if(app.aboutView){
+      //reuse
+      app.aboutView.render();
+    }else {
+      app.aboutView = new app.views.AboutView();
+      app.aboutView.render();
+    }
   },
 
   start: function() {

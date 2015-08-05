@@ -3,27 +3,39 @@ var app = {
   models: {},
   routers: {},
   utils: {},
-  adapters: {}
+  adapters: {},
+  version: "0.0.1"
 };
 
 $(document).on("ready", function () {
-  console.log("Ready. Launching app.");
-  //app.router = new app.routers.AppRouter();
-  /*app.utils.templates.load(["HomeView", "MapView"],
-    function () {
-      app.router = new app.routers.AppRouter();
-      Backbone.history.start();
-      console.log("We've started");
-    });*/
+  var loaditems = [
+    "HomeView",
+    "MapView",
+    "AboutView"
+  ];
 
-  //Backbone.history.start();
-  console.log("We've started");
+  var deferreds = [];
 
-  var galaxies = new app.models.GalaxyCollection().fetch()
-    .done(function(data){
-      console.log(data);
-    });
-  console.log(galaxies);
+  $.each(loaditems, function(index, view) {
+    if (app.views[view]) {
+      deferreds.push($.get('tpl/' + view + '.html', function(data) {
+        app.views[view].prototype.template = _.template(data);
+      }, 'html'));
+    } else {
+      console.log(view + " not found");
+    }
+  });
 
-  console.log("We're doomed!");
+  app.linkClick = function(e){
+    e.preventDefault();
+
+    var href = $(event.currentTarget).attr('href');
+    app.router.navigate(href, true);
+  }
+
+  $.when.apply(null, deferreds).done(function(){
+    app.router = new app.routers.AppRouter();
+    app.router.start();
+    app.router.navigate("home", true);
+  });
 });

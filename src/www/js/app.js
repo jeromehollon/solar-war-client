@@ -3,17 +3,15 @@ var app = {
   models: {},
   routers: {},
   utils: {},
-  adapters: {}
+  adapters: {},
+  version: "0.0.1"
 };
 
 $(document).on("ready", function () {
-  app.router = new app.routers.AppRouter();
-  app.router.start();
-
-
   var loaditems = [
     "HomeView",
     "MapView",
+    "AboutView"
   ];
 
   var deferreds = [];
@@ -28,14 +26,16 @@ $(document).on("ready", function () {
     }
   });
 
-  $.when.apply(null, deferreds).done(function(){
-    //app.router.navigate("map", true);
-  });
-
-  $("a").on("click", function(e){
+  app.linkClick = function(e){
     e.preventDefault();
 
     var href = $(event.currentTarget).attr('href');
     app.router.navigate(href, true);
+  }
+
+  $.when.apply(null, deferreds).done(function(){
+    app.router = new app.routers.AppRouter();
+    app.router.start();
+    app.router.navigate("home", true);
   });
 });

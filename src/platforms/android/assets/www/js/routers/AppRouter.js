@@ -1,50 +1,57 @@
 app.routers.AppRouter = Backbone.Router.extend({
 
   routes: {
-    "":                         "home"
+    "":           "loadScreen",
+    "home":       "home",
+    "map":        "map",
+    "about":      "about"
   },
 
   initialize: function () {
-    app.slider = new PageSlider($('body'));
+    $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
 
+      options.crossDomain ={
+        crossDomain: true
+      };
+      /*options.xhrFields = {
+        withCredentials: true
+      };*/
+    });
+
+  },
+
+  loadScreen: function() {
+    app.loadView = new app.views.LoadView();
+    app.loadView.render();
   },
 
   home: function () {
     // Since the home view never changes, we instantiate it and render it only once
-    if (!app.homeView) {
-      app.homeView = new app.views.HomeView();
+    if (app.homeView) {
       app.homeView.render();
     } else {
-      console.log('reusing home view');
-      app.homeView.delegateEvents(); // delegate events when the view is recycled
+      app.homeView = new app.views.HomeView();
+      app.homeView.render();
     }
-    app.slider.slidePage(app.homeView.$el);
   },
 
-  employeeDetails: function (id) {
-    var employee = new app.models.Employee({id: id});
-    employee.fetch({
-      success: function (data) {
-        // Note that we could also 'recycle' the same instance of EmployeeFullView
-        // instead of creating new instances
-        app.slider.slidePage(new app.views.EmployeeView({model: data}).render().$el);
-      }
-    });
+  map: function(){
+    app.mapView = new app.views.MapView();
+    app.mapView.render();
   },
 
-  reports: function (id) {
-    var employee = new app.models.Employee({id: id});
-    employee.fetch({
-      success: function (data) {
-        // Note that we could also 'recycle' the same instance of EmployeeFullView
-        // instead of creating new instances
-        app.slider.slidePage(new app.views.ReportsView({model: data}).render().$el);
-      }
-    });
+  about: function(){
+    if(app.aboutView){
+      //reuse
+      app.aboutView.render();
+    }else {
+      app.aboutView = new app.views.AboutView();
+      app.aboutView.render();
+    }
   },
 
-  map: function (id) {
-    app.slider.slidePage(new app.views.MapView().render().$el);
+  start: function() {
+    $.support.cors = true;
+    Backbone.history.start();
   }
-
 });
