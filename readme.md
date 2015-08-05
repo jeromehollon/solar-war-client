@@ -1,0 +1,1 @@
+This project uses gulp to prebuild the www folder for phonegap.
