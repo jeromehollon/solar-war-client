@@ -5,6 +5,10 @@
 #maven
 target/
 
+#nodejs and gulp
+node_modules/
+phonegap/www
+
 
 #other
 logs/
