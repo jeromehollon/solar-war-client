@@ -1,0 +1,10 @@
+{
+   "devDependencies": {
+	  "gulp-minify-css": ">=1.2.0",
+      "gulp-concat": ">=2.2.0",
+      "gulp-uglify": ">=0.2.1",
+      "gulp-jshint": ">=1.5.1",
+	  "gulp-shell": ">=0.4.2",
+      "gulp": ">=3.5.6"
+   }
+}

@@ -2,7 +2,7 @@ body {
   color: white;
   font-family: 'Raleway', sans-serif;
   font-size: 1em;
-  background: #000000;
+  background: @background-color;
 }
 
 h1, h2, h3, h4, h5, h6, {
@@ -12,13 +12,13 @@ h1, h2, h3, h4, h5, h6, {
 }
 
 #container {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 
@@ -35,10 +35,12 @@ h1, h2, h3, h4, h5, h6, {
 
   width: 25px;
   height: 25px;
+  line-height: 25px;
 
   border: 1px solid black;
   border-radius: 5px;
+}
 
-  background: url("../img/icons/back.svg") no-repeat center #888888;
-  background-size: contain;
+.topcoat-icon-button .topcoat-icon.icomatic {
+  line-height: 25px;
 }

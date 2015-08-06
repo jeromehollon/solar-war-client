@@ -31,8 +31,8 @@ app.views.MapView = Backbone.View.extend({
     this.starCollection = this.collection.starCollection;
     this.planetCollection = this.collection.planetCollection;
 
-    this.renderWidth = $("#galaxy-map").width();
-    this.renderHeight = $("#galaxy-map").height();
+    this.renderWidth = this.$el.width();
+    this.renderHeight = this.$el.height();
     this.renderer = new PIXI.autoDetectRenderer(this.renderWidth, this.renderHeight, {
       view: $("#galaxy-map")[0],
       transparent: true
