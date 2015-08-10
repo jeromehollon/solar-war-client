@@ -1,75 +1,106 @@
-<div id="about-view">
-    <div class="row header">
-        <button class="topcoat-icon-button" href="#home">
-            <span class="topcoat-icon icomatic">back</span>
-        </button>
-        <h1>About Solar Wars</h1>
-    </div>
-    <div class="row">
-        <h3>What is Soloar Wars?</h3>
-        <p>Solar Wars is an online, massively multiplayer strategy game.</p>
-        <p>Version: <%= version %></p>
-    </div>
-    <div class="row">
-        <h3>Philosphy</h3>
-        <p>Solar Wars is founded upon the idea of giving players a fun, friendly game that encourages your participation.
-        We encourage your participation is seveal ways:</p>
-        <ul>
-            <li><b>Free to Play, not Fee to pay.</b> We absolutely do not approve of games that you have to pay to win. Solar Wars will never allow that</li>
-            <li><b>Open Source.</b> The client and the server code will both be avaliable online at git hub eventually. Check back for the link.</li>
-            <li><b>We Listen.</b> I, Jerome Hollon, will listen to your input. Find me on LINE with the username of Malfist. Tell me where you're from!</li>
-            <li><b>I Play Too.</b> I'll play the game too, so I'll see it how you see it.</li>
-        </ul>
-    </div>
-    <div class="row">
-        <h3>Privacy Policy</h3>
-        <p>There isn't one. Assume we're keeping everything you put into this game, and we're selling it to your next door neighbor who secretly hates your
-            guts, and doesn't like Fluffy either.</p>
-        <p>That being said, we're not going to sell your email address or whatever you used to login into the game with. We don't like it when other
-        companies do that to us either.</p>
-    </div>
-    <div class="row">
-        <h3>Attributions</h3>
-        <p>We borrowed some assets from the great community around open game design and would like to attribute to them.</p>
-        <p>Without them, this game would not have happened. Or at least it wouldn't be as pretty.</p>
-        <p>Contact us if you don't want to be attributed, but we're attributing everyone regardless of the asset's license.</p>
-        <div class="attribution">
-            <div class="attribution-link">
-                <a href="http://opengameart.org/users/unnamed">Open Game Art: Victor Hahn</a>
+<div id="about-view" class="topcoat-grid">
+    <div class="topcoat-navigation-bar">
+        <div class="topcoat-navigation-bar__item topcoat-grid__row">
+            <button class="topcoat-icon-button--quiet" href="#home">
+                <span class="topcoat-icon icomatic">back</span>
+            </button>
+            <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
+                <h1 class="topcoat-navigation-bar__title">About Solar Wars</h1>
             </div>
-            <div class="attribution-license">
-                License: <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>
-            </div>
-            <div class="attribution-source">
-                <a href="http://opengameart.org/content/17-planet-sprites">Source</a>
-            </div>
-            <p>We borrowed some of his planet designs.</p>
         </div>
-
-        <div class="attribution">
-            <div class="attribution-link">
-                <a href="http://opengameart.org/users/tatermand">Open Game Art: Tatermand</a>
-            </div>
-            <div class="attribution-license">
-                License: <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>
-            </div>
-            <div class="attribution-source">
-                <a href="http://opengameart.org/content/space-game-art-pack-extended">Source</a>
-            </div>
-            <p>We borrowed some of their planet designs, and star designs.</p>
+    </div>
+    <div class="topcoat-grid__row">
+        <div class="topcoat-grid__column--auto">
+            <h3>What is Soloar Wars?</h3>
+            <p>Solar Wars is an online, massively multiplayer strategy game.</p>
+            <p>Version: <%= version %></p>
         </div>
+    </div>
+    <div class="topcoat-grid__row">
+        <div class="topcoat-grid__column--auto">
+            <h3>Philosphy</h3>
+            <p>Solar Wars is founded upon the idea of giving players a fun, friendly game that encourages your participation.
+            We encourage your participation is seveal ways:</p>
+            <ul>
+                <li><b>Free to Play, not Fee to pay.</b> We absolutely do not approve of games that you have to pay to win. Solar Wars will never allow that</li>
+                <li><b>Open Source.</b> The client and the server code will both be avaliable online at git hub eventually. Check back for the link.</li>
+                <li><b>We Listen.</b> I, Jerome Hollon, will listen to your input. Find me on LINE with the username of Malfist. Tell me where you're from!</li>
+                <li><b>I Play Too.</b> I'll play the game too, so I'll see it how you see it.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="topcoat-grid__row">
+        <div class="topcoat-grid__column--auto">
+            <h3>Privacy Policy</h3>
+            <p>There isn't one. Assume we're keeping everything you put into this game, and we're selling it to your next door neighbor who secretly hates your
+                guts, and doesn't like Fluffy either.</p>
+            <p>That being said, we're not going to sell your email address or whatever you used to login into the game with. We don't like it when other
+            companies do that to us either.</p>
+        </div>
+    </div>
+    <div class="topcoat-grid__row">
+        <div class="topcoat-grid__column--auto">
+            <h3>Attributions</h3>
+            <p>We borrowed some assets from the great community around open game design and would like to attribute to them.</p>
+            <p>Without them, this game would not have happened. Or at least it wouldn't be as pretty.</p>
+            <p>Contact us if you don't want to be attributed, but we're attributing everyone regardless of the asset's license.</p>
 
-        <div class="attribution">
-            <div class="attribution-link">
-                <a href="http://game-icons.net/">Game Icon Project</a>
+            <div class="topcoat-list">
+                <h3 class="topcoat-list__header">Open Game Art: <a href="http://opengameart.org/users/unnamed">Victor Hahn</a></h3>
+                <ul class="topcoat-list__container">
+                    <li class="topcoat-list__item">
+                        License: <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        Source: <a href="http://opengameart.org/content/17-planet-sprites">Planet Sprites</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        <p>We borrowed some of his planet designs.</p>
+                    </li>
+                </ul>
             </div>
-            <div class="attribution-license">
-                License: <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>
+            <div class="topcoat-list">
+                <h3 class="topcoat-list__header">Open Game Art: <a href="http://opengameart.org/users/tatermand">Tatermand</a></h3>
+                <ul class="topcoat-list__container">
+                    <li class="topcoat-list__item">
+                        License: <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        Source: <a href="http://opengameart.org/content/space-game-art-pack-extended">Space Game Art Pack Extended</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        <p>We borrowed some of their planet designs, and star designs.</p>
+                    </li>
+                </ul>
             </div>
-            <div class="attribution-source">
-                <a href="http://opengameart.org/content/space-ship-construction-kit">Source</a>
+            <div class="topcoat-list">
+                <h3 class="topcoat-list__header"><a href="http://game-icons.net/">Game Icon Project</a></h3>
+                <ul class="topcoat-list__container">
+                    <li class="topcoat-list__item">
+                        License: <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        Source: <a href="http://game-icons.net">Game Icons</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        <p>We utilized icons from their icon pack in this game.</p>
+                    </li>
+                </ul>
             </div>
-            <p>We utilized icons from their icon pack in this game.</p>
+            <div class="topcoat-list">
+                <h3 class="topcoat-list__header">Open Game Art: <a href="http://opengameart.org/users/skorpio">Skorpio</a></h3>
+                <ul class="topcoat-list__container">
+                    <li class="topcoat-list__item">
+                        License: <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        Source: <a href="http://opengameart.org/content/space-ship-construction-kit">Spaceship Construction Kit</a>
+                    </li>
+                    <li class="topcoat-list__item">
+                        <p>We utilized the construction kit to create spaceships.</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

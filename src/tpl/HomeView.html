@@ -1,11 +1,27 @@
-<div id="header">
-    <img id="logo" src="img/logo.png" />
-    <h1>Solar Wars</h1>
+<div class="page-wrapper home-view">
+    <div class="topcoat-grid">
+        <div class="topcoat-navigation-bar">
+            <div class="topcoat-navigation-bar__item topcoat-grid__row">
+                <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
+                    <img id="logo" src="img/logo.png" />
+                    <h1 class="topcoat-navigation-bar__title">Solar Wars</h1>
+                </div>
+            </div>
+        </div>
+        <div class="topcoat-grid__row">
+            <div class="topcoat-grid__column--auto center">
+                <button id="btn-login" class="topcoat-button--large" href='#login'><li>Login</li></button>
+                <button id="btn-register" class="topcoat-button--large" href='#register'><li>Register</li></button>
+                <button id="btn-map" class="topcoat-button--large" href='#map' disabled><li>Start Game</li></button>
+                <button id="btn-realm" class="topcoat-button--large" href='#realm' disabled><li>Select Server</li></button>
+                <button id="btn-settings" class="topcoat-button--large" href='#settings' disabled><li>Settings</li></button>
+                <button id="btn-about" class="topcoat-button--large" href='#about'><li>About</li></button>
+            </div>
+        </div>
+        <div class="topcoat-grid__row">
+            <div class="topcoat-grid__column--auto center">
+                <p id="statusText">&nbsp;</p>
+            </div>
+        </div>
+    </div>
 </div>
-<ul id="menu">
-    <a class="topcoat-button--large" href='#user'><li>Login</li></a>
-    <a class="topcoat-button--large" href='#map'><li>Start Game</li></a>
-    <a class="topcoat-button--large" href='#realm'><li>Select Server</li></a>
-    <a class="topcoat-button--large" href='#settings'><li>Settings</li></a>
-    <a class="topcoat-button--large" href='#about'><li>About</li></a>
-</ul>

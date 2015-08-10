@@ -40,10 +40,13 @@ C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platfor
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\spec \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\tpl \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\base.less \
+C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\colors.less \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\icons \
+C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\materials-color.less \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\normalize.less \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\styles.css \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\styles.less \
+C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\topcoat-grid.css \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\topcoat-mobile-dark.css \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\variables.less \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\css\views \
@@ -89,6 +92,7 @@ C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platfor
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\js\views\HomeView.js \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\js\views\LoadView.js \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\js\views\MapView.js \
+C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\js\views\RegisterView.js \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\libs\backbone-min.js \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\libs\images \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\libs\jquery-2.1.4.min.js \
@@ -169,4 +173,5 @@ C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platfor
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\tpl\AboutView.html \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\tpl\HomeView.html \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\tpl\MapView.html \
+C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\assets\www\tpl\RegisterView.html \
 C:\Users\godzilla\Documents\Projects\solar-war\solar-war-client\phonegap\platforms\android\ant-build\AndroidManifest.xml \

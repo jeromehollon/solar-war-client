@@ -7,7 +7,7 @@ app.models.Galaxy = Backbone.Model.extend({
 
 app.models.GalaxyCollection = Backbone.Collection.extend({
   model: app.models.Galaxy,
-  url: "http://192.168.1.140:8080/map/all",
+  url: "http://192.168.1.140:8080/api/map/all",
 
 
   initialize: function(){

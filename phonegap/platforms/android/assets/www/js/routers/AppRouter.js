@@ -4,7 +4,8 @@ app.routers.AppRouter = Backbone.Router.extend({
     "":           "loadScreen",
     "home":       "home",
     "map":        "map",
-    "about":      "about"
+    "about":      "about",
+    "register":      "register"
   },
 
   initialize: function () {
@@ -47,6 +48,16 @@ app.routers.AppRouter = Backbone.Router.extend({
     }else {
       app.aboutView = new app.views.AboutView();
       app.aboutView.render();
+    }
+  },
+
+  register: function(){
+    if(app.registerView){
+      //reuse
+      app.registerView.render();
+    }else {
+      app.registerView = new app.views.RegisterView();
+      app.registerView.render();
     }
   },
 

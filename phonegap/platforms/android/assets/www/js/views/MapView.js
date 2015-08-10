@@ -1,4 +1,3 @@
-
 app.views.MapView = Backbone.View.extend({
   el: "#container",
 

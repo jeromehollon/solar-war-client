@@ -27,7 +27,13 @@ var paths = {
 	],
 	assets: [
 		"src/index.html",
-		"src/tpl/*",
+		"src/tpl/*"
+	],
+	assetsIndex: [
+		"src/index.html"
+	],
+	assetsTpl: [
+		"src/tpl/*"
 	]
 	
 }
@@ -43,8 +49,14 @@ gulp.task('copyToPhonegap', function() {
 	return gulp.src("src/**").pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('copy-assets', function() {
-	return gulp.src(paths.assets).pipe(gulp.dest(paths.dest));
+gulp.task('copy-assets', ['copy-assets-index', 'copy-assets-tpl']);
+
+gulp.task('copy-assets-index', function() {
+	return gulp.src(paths.assetsIndex).pipe(gulp.dest(paths.dest));
+});
+
+gulp.task('copy-assets-tpl', function() {
+	return gulp.src(paths.assetsTpl).pipe(gulp.dest(paths.dest + "tpl"));
 });
 
 gulp.task('minify-libs', function(){

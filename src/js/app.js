@@ -4,17 +4,29 @@ var app = {
   routers: {},
   utils: {},
   adapters: {},
-  version: "0.0.1"
+  version: "0.0.1",
+  baseUrl: "http://192.168.1.140:8080/"
 };
 
 $(document).on("ready", function () {
   var loaditems = [
     "HomeView",
     "MapView",
-    "AboutView"
+    "AboutView",
+    "RegisterView",
+    "LoginView",
   ];
 
   var deferreds = [];
+
+  $.ajaxSetup({
+    crossDomain: true,
+    xhrFields: {
+      withCredentials: true
+    },
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json"
+  });
 
   $.each(loaditems, function(index, view) {
     if (app.views[view]) {
@@ -26,8 +38,8 @@ $(document).on("ready", function () {
     }
   });
 
-  app.linkClick = function(e){
-    e.preventDefault();
+  app.linkClick = function(event){
+    event.preventDefault();
 
     var href = $(event.currentTarget).attr('href');
     app.router.navigate(href, true);
@@ -36,6 +48,5 @@ $(document).on("ready", function () {
   $.when.apply(null, deferreds).done(function(){
     app.router = new app.routers.AppRouter();
     app.router.start();
-    app.router.navigate("home", true);
   });
 });

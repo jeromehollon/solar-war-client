@@ -11,7 +11,8 @@ $(document).on("ready", function () {
   var loaditems = [
     "HomeView",
     "MapView",
-    "AboutView"
+    "AboutView",
+    "RegisterView"
   ];
 
   var deferreds = [];
@@ -26,8 +27,8 @@ $(document).on("ready", function () {
     }
   });
 
-  app.linkClick = function(e){
-    e.preventDefault();
+  app.linkClick = function(event){
+    event.preventDefault();
 
     var href = $(event.currentTarget).attr('href');
     app.router.navigate(href, true);
