@@ -1,14 +1,12 @@
 app.utils.AuthUtil = {
 
-  storeAuth: function(username, password){
+  storeAuth: function(username){
     window.localStorage.setItem("username", username);
-    window.localStorage.setItem("password", password);
   },
 
   getAuth: function(){
     return {
-      username: window.localStorage.getItem("username"),
-      password: window.localStorage.getItem("password")
+      username: window.localStorage.getItem("username")
     }
   },
 
@@ -21,10 +19,16 @@ app.utils.AuthUtil = {
     var auth = this.getAuth();
   },
 
+  reauthentication: function(){
+    var url = app.baseUrl + "api/player/revalidate";
+    return $.get(url);
+  },
+
   attemptAuthentication: function(username, password){
     var values = {
       "username":  username,
-      "password": password
+      "password": password,
+      "_spring_security_remember_me": true
     };
 
     var url = app.baseUrl + "login";

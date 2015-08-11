@@ -10,9 +10,7 @@ app.views.MapView = Backbone.View.extend({
       "setActiveSolarObject", "solarObjectClick", "decorateSolarObject", "decoratePlanet", "decorateStar");
 
     this.collection = new app.models.GalaxyCollection();
-
-    this.collection.bind("reset", this.render);
-    this.collection.fetch({reset: true});
+    this.collection.fetch({reset: true, success: this.render});
   },
 
   render: function () {

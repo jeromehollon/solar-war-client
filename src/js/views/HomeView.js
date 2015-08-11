@@ -23,15 +23,15 @@ app.views.HomeView = Backbone.View.extend({
     $("#btn-login", this.$el).attr("disabled", "disabled");
     $("#btn-register", this.$el).attr("disabled", "disabled");
 
-    app.utils.AuthUtil.attemptAuthentication(authVars.username, authVars.password)
+    app.utils.AuthUtil.reauthentication()
       .done(function(){
         $("#btn-map", this.$el).removeAttr("disabled");
-        $("#statusText", this.$el).text("Login success.").fadeOut("slow");
+        $("#statusText", this.$el).text("Login success.").fadeOut(5000);
       })
       .fail(function(){
         $("#btn-login", this.$el).removeAttr("disabled");
         $("#btn-register", this.$el).removeAttr("disabled");
-        $("#statusText", this.$el).text("Login failed.");
+        $("#statusText", this.$el).text("Authentication expired. Please log in again.").addClass("flash-error");
       });
 
   }

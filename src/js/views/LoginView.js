@@ -27,7 +27,7 @@ app.views.LoginView = Backbone.View.extend({
     app.utils.AuthUtil.attemptAuthentication(username, password)
       .done(function(){
         //store auth
-        app.utils.AuthUtil.storeAuth(username, password);
+        app.utils.AuthUtil.storeAuth(username);
 
         $("#login #loader", this.$el).remove();
         $("#login", this.$el).append(
