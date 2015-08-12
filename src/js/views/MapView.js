@@ -5,6 +5,9 @@ app.views.MapView = Backbone.View.extend({
   planetSize: 30,
   starSize: 40,
 
+  //a subview
+  controlView: null,
+
   initialize: function() {
     _(this).bindAll("render", "renderStars", "positionSolarObject", "animate", "mousemove", "mouseup", "mousedown",
       "setActiveSolarObject", "solarObjectClick", "decorateSolarObject", "decoratePlanet", "decorateStar");
@@ -51,6 +54,11 @@ app.views.MapView = Backbone.View.extend({
 
     this.firstFrame = true;
     requestAnimationFrame(this.animate);
+
+
+    //setup control view
+    this.controlView = new app.views.ControlView();
+    this.controlView.render();
 
     return this;
   },

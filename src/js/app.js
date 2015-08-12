@@ -15,6 +15,7 @@ $(document).on("ready", function () {
     "AboutView",
     "RegisterView",
     "LoginView",
+    "ControlView"
   ];
 
   var deferreds = [];

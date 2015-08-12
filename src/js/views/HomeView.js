@@ -9,6 +9,7 @@ app.views.HomeView = Backbone.View.extend({
     this.$el.html(this.template());
     $("button", this.$el).on("click", app.linkClick);
 
+
     if(app.utils.AuthUtil.isStored){
       this.attemptAuth();
     }

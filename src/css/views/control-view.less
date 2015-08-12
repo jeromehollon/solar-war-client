@@ -1,0 +1,129 @@
+#control-center {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  height: 150px;
+  width: 100%;
+  z-index: 2;
+
+  font-size: 12px;
+  font-family: Raleway sans-serif;
+  color: @md-clr-blue-grey-50;
+  overflow-y: hidden;
+
+  .control-header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+
+    background: @md-clr-blue-800;
+    border-top: 1px solid @md-clr-light-blue-100;
+    border-left: 1px solid @md-clr-light-blue-100;
+    border-right: 1px solid @md-clr-light-blue-100;
+    border-radius:  5px 0 0 0;
+
+    margin: 0;
+
+    .title {
+      margin-left: 50px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    height: 20px;
+  }
+
+  .control-body {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    right: 0px;
+
+    height: 130px;
+    background: @md-clr-blue-grey-900;
+    border-left: 1px solid @md-clr-light-blue-100;
+    border-right: 1px solid @md-clr-light-blue-100;
+
+
+    .control-left {
+      width: 75%;
+      float: left;
+    }
+    .control-right {
+      width: 25%;
+      float: left;
+    }
+
+
+    .event-log {
+      .topcoat-list__header {
+        height: 18px;
+        margin: 0;
+        padding: 0 5px;
+      }
+      .topcoat-list__container {
+        height: 110px;
+        overflow-y: scroll;
+
+        .topcoat-list__item {
+          background: @md-clr-blue-grey-300;
+          margin: 0;
+          padding: 0 0 0 7px;
+        }
+      }
+    }
+
+
+    .chat-ticker{
+      height: 20px;
+
+      position: absolute;
+      top: -20px;
+      right: 10px;
+
+      .chat-ticker-item {
+        height: 17px;
+        width: 17px;
+        margin: 2px;
+        line-height: 18px;
+        text-align: center;
+
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 14px;
+        display: inline-block;
+
+        &.private {
+          border-radius: 5px;
+          border: 1px solid @md-clr-cyan-200;
+          background: @md-clr-cyan-800;
+        }
+        &.global {
+          border-radius: 5px;
+          border: 1px solid @md-clr-green-200;
+          background: @md-clr-green-800;
+        }
+      }
+    }
+
+    .menu {
+      clear: both;
+      width: 100%;
+      text-align: center;
+      .topcoat-button {
+        display: block;
+
+        height: 26px;
+        line-height: 18px;
+        font-size: 18px;
+
+        margin: 5px auto;
+        padding: 0px 10px;
+
+        width: 80%;
+        text-align: center;
+      }
+    }
+  }
+}
