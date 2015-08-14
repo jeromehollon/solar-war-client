@@ -23,10 +23,12 @@ app.views.RegisterView = Backbone.View.extend({
 
   initialize: function () {
     _(this).bindAll("submitClicked");
+    this.template = Handlebars.compile($("#register-view-template").html());
   },
 
   render: function () {
     this.$el.html(this.template());
+
     $("button[href]", this.$el).on("click", app.linkClick);
     $("#submit-button", this.$el).on("click", this.submitClicked);
     return this;

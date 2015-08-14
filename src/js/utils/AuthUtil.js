@@ -12,7 +12,6 @@ app.utils.AuthUtil = {
 
   clearAuth: function() {
     window.localStorage.removeItem("username");
-    window.localStorage.removeItem("password");
   },
 
   isStored: function(){

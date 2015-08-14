@@ -3,10 +3,12 @@ app.views.HomeView = Backbone.View.extend({
 
   initialize: function () {
     _(this).bindAll("attemptAuth");
+    this.template = Handlebars.compile($("#home-view-template").html());
   },
 
   render: function () {
     this.$el.html(this.template());
+
     $("button", this.$el).on("click", app.linkClick);
 
 

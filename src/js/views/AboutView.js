@@ -2,11 +2,11 @@ app.views.AboutView = Backbone.View.extend({
   el: "#container",
 
   initialize: function () {
+    this.template = Handlebars.compile($("#about-view-template").html());
   },
 
 
   render: function () {
-    console.log("Rendering About View");
     this.$el.html(this.template({version: app.version}));
     $("button", this.$el).on("click", app.linkClick);
     return this;

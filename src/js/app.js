@@ -9,16 +9,12 @@ var app = {
 };
 
 $(document).on("ready", function () {
-  var loaditems = [
-    "HomeView",
-    "MapView",
-    "AboutView",
-    "RegisterView",
-    "LoginView",
-    "ControlView"
-  ];
+  app.linkClick = function(event){
+    event.preventDefault();
 
-  var deferreds = [];
+    var href = $(event.currentTarget).attr('href');
+    app.router.navigate(href, true);
+  };
 
   $.ajaxSetup({
     crossDomain: true,
@@ -29,25 +25,20 @@ $(document).on("ready", function () {
     dataType: "json"
   });
 
-  $.each(loaditems, function(index, view) {
-    if (app.views[view]) {
-      deferreds.push($.get('tpl/' + view + '.html', function(data) {
-        app.views[view].prototype.template = _.template(data);
-      }, 'html'));
-    } else {
-      console.log(view + " not found");
-    }
-  });
+  $.ajax({
+    type: 'GET',
+    url: "tpl/app-templates.js",
+    dataType: 'text',
+    crossDomain: false
+  })
+    .done(function(templates){
+      $("body").append(templates);
 
-  app.linkClick = function(event){
-    event.preventDefault();
+      app.router = new app.routers.AppRouter();
+      app.router.start();
+    })
+    .fail(function(error){
+      console.log(error.statusCode());
+    });
 
-    var href = $(event.currentTarget).attr('href');
-    app.router.navigate(href, true);
-  }
-
-  $.when.apply(null, deferreds).done(function(){
-    app.router = new app.routers.AppRouter();
-    app.router.start();
-  });
 });

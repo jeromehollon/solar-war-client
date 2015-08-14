@@ -25,20 +25,16 @@ var paths = {
 		'src/js/routers/*',
 		'src/js/adapters/*',
 	],
+  templates: [
+    "src/tpl/*"
+  ],
 	assets: [
 		"src/index.html",
-		"src/tpl/*"
-	],
-	assetsIndex: [
-		"src/index.html"
-	],
-	assetsTpl: [
-		"src/tpl/*"
 	]
 	
 }
 
-gulp.task('default', ['watch', 'copyToPhonegap', 'minify-libs', 'minify', 'lessify'], function() {  
+gulp.task('default', ['watch', 'copyToPhonegap', 'minify-libs', 'minify', 'lessify', 'build-templates'], function() {
 });
 
 gulp.task('clean', function(cb){
@@ -49,14 +45,8 @@ gulp.task('copyToPhonegap', function() {
 	return gulp.src("src/**").pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('copy-assets', ['copy-assets-index', 'copy-assets-tpl']);
-
-gulp.task('copy-assets-index', function() {
-	return gulp.src(paths.assetsIndex).pipe(gulp.dest(paths.dest));
-});
-
-gulp.task('copy-assets-tpl', function() {
-	return gulp.src(paths.assetsTpl).pipe(gulp.dest(paths.dest + "tpl"));
+gulp.task('copy-assets', function() {
+	return gulp.src(paths.assets).pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('minify-libs', function(){
@@ -83,7 +73,14 @@ gulp.task('watch', function() {
 	gulp.watch(paths.jslibs, ['minify-libs']);
 	gulp.watch(paths.less, ['lessify']);
 	gulp.watch(paths.jsapp, ['minify']);
-	gulp.watch(paths.assets, ['copy-assets']);
+  gulp.watch(paths.assets, ['copy-assets']);
+  gulp.watch(paths.templates, ['build-templates']);
+});
+
+gulp.task('build-templates', function(){
+  return gulp.src(paths.templates)
+    .pipe(plugins.concat('app-templates.js'))
+    .pipe(gulp.dest(paths.dest + "tpl"));
 });
 
 gulp.task('run', ["default"], plugins.shell.task("phonegap run android", {

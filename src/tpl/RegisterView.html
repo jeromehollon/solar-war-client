@@ -1,36 +1,38 @@
-<div class="topcoat-grid">
-    <div class="topcoat-navigation-bar">
-        <div class="topcoat-navigation-bar__item topcoat-grid__row">
-            <button class="topcoat-icon-button--quiet" href="#home">
-                <span class="topcoat-icon icomatic">back</span>
-            </button>
-            <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
-                <h1 class="topcoat-navigation-bar__title">Registration</h1>
+<script id="register-view-template" type="text/x-handlebars-template">
+    <div class="topcoat-grid">
+        <div class="topcoat-navigation-bar">
+            <div class="topcoat-navigation-bar__item topcoat-grid__row">
+                <button class="topcoat-icon-button--quiet" href="#home">
+                    <span class="topcoat-icon icomatic">back</span>
+                </button>
+                <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
+                    <h1 class="topcoat-navigation-bar__title">Registration</h1>
+                </div>
+            </div>
+        </div>
+        <div id="registration">
+            <div class="topcoat-grid__row">
+                <label for="username" class="topcoat-grid__column--5 vcenter">Username: </label>
+                <input id="username" type="text" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Username" value="">
+            </div>
+            <div class="topcoat-grid__row">
+                <label for="password" class="topcoat-grid__column--5 vcenter">Password: </label>
+                <input id="password" type="password" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Password" value="">
+            </div>
+            <div class="topcoat-grid__row">
+                <label for="password2" class="topcoat-grid__column--5 vcenter">Re-enter: </label>
+                <input id="password2" type="password" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Password Reenter" value="">
+            </div>
+            <div class="topcoat-grid__row">
+                <label for="email" class="topcoat-grid__column--5 vcenter">Email: </label>
+                <input id="email" type="text" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Email" value="">
+            </div>
+            <div class="topcoat-grid__row">
+                <p class="topcoat-grid__column--auto">We only use your email for recovery purposes and is not required.</p>
+            </div>
+            <div class="topcoat-grid__row" class="topcoat-grid__column--3">
+                <button id="submit-button" class="topcoat-button--cta topcoat-grid__column--auto">Submit</button>
             </div>
         </div>
     </div>
-    <div id="registration">
-        <div class="topcoat-grid__row">
-            <label for="username" class="topcoat-grid__column--5 vcenter">Username: </label>
-            <input id="username" type="text" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Username" value="">
-        </div>
-        <div class="topcoat-grid__row">
-            <label for="password" class="topcoat-grid__column--5 vcenter">Password: </label>
-            <input id="password" type="password" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Password" value="">
-        </div>
-        <div class="topcoat-grid__row">
-            <label for="password2" class="topcoat-grid__column--5 vcenter">Re-enter: </label>
-            <input id="password2" type="password" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Password Reenter" value="">
-        </div>
-        <div class="topcoat-grid__row">
-            <label for="email" class="topcoat-grid__column--5 vcenter">Email: </label>
-            <input id="email" type="text" class="topcoat-text-input topcoat-grid__column--auto" placeholder="Email" value="">
-        </div>
-        <div class="topcoat-grid__row">
-            <p class="topcoat-grid__column--auto">We only use your email for recovery purposes and is not required.</p>
-        </div>
-        <div class="topcoat-grid__row" class="topcoat-grid__column--3">
-            <button id="submit-button" class="topcoat-button--cta topcoat-grid__column--auto">Submit</button>
-        </div>
-    </div>
-</div>
+</script>

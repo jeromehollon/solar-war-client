@@ -4,6 +4,7 @@ app.views.ControlView = Backbone.View.extend({
   collection: new app.models.PlayerCollection(),
 
   initialize: function () {
+    this.template = Handlebars.compile($("#control-view-template").html());
     _(this).bindAll("render");
 
     this.collection.fetch({
@@ -13,10 +14,8 @@ app.views.ControlView = Backbone.View.extend({
 
 
   render: function () {
-    console.log("Rendering Control View");
 
     var model;
-    console.log(this.collection.models);
     if(this.collection.models[0]){
       model = this.collection.models[0];
     }

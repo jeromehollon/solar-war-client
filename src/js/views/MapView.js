@@ -14,6 +14,8 @@ app.views.MapView = Backbone.View.extend({
 
     this.collection = new app.models.GalaxyCollection();
     this.collection.fetch({reset: true, success: this.render});
+
+    this.template = Handlebars.compile($("#map-view-template").html());
   },
 
   render: function () {
