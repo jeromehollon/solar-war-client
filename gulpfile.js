@@ -12,6 +12,7 @@ var paths = {
 		'src/libs/underscore-min.js',
 		'src/libs/backbone-min.js',
 		'src/libs/pixi.min.js',
+    'src/libs/handlebars-v3.0.0.js',
 		'src/libs/*'
 	],
 	less: [

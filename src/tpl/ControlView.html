@@ -2,27 +2,41 @@
     <div class="control-header"><span class="title">{{#if player}}{{toProperCase player.attributes.username }} Empire{{/if}}</span></div>
     <div class="control-body">
         <div class="control-left">
-            {{#if player}}
-            <div class="topcoat-list event-log">
-                <h3 class="topcoat-list__header">Event Log</h3>
-                <ul class="topcoat-list__container">
-                    <li class="topcoat-list__item">Fleet 1 under attack!</li>
-                    <li class="topcoat-list__item">Fleet Delta was victorious!</li>
-                    <li class="topcoat-list__item">Fleet Delta engaging in combat.</li>
-                    <li class="topcoat-list__item">Fleet Delta arrived at Reone.</li>
-                    <li class="topcoat-list__item">Astad completed construction of Fleet Beacon.</li>
-                    <li class="topcoat-list__item">Fleet Reserves-A orbiting Yarried</li>
-                    <li class="topcoat-list__item">Tingagl captured by Rolodex Empire</li>
-                    <li class="topcoat-list__item">Fleet 2 was destroyed.</li>
-                    <li class="topcoat-list__item">Fleet 2 engaging in combat.</li>
-                    <li class="topcoat-list__item">Tingagl under attack by Rolodex Empire!</li>
-                    <li class="topcoat-list__item">Tingagl was successfully defended.</li>
-                    <li class="topcoat-list__item">Fleet 2 was victorious!</li>
-                    <li class="topcoat-list__item">Fleet 2 engaging in combat.</li>
-                    <li class="topcoat-list__item">Fleet 2 arrived at Tingagl.</li>
-                </ul>
-            </div>
-            {{/if}}
+            {{#is type "eventlog"}}
+                <div class="topcoat-list event-log">
+                    <h3 class="topcoat-list__header">Event Log</h3>
+                    <ul class="topcoat-list__container">
+                        <li class="topcoat-list__item">Fleet 1 under attack!</li>
+                        <li class="topcoat-list__item">Fleet Delta was victorious!</li>
+                        <li class="topcoat-list__item">Fleet Delta engaging in combat.</li>
+                        <li class="topcoat-list__item">Fleet Delta arrived at Reone.</li>
+                        <li class="topcoat-list__item">Astad completed construction of Fleet Beacon.</li>
+                        <li class="topcoat-list__item">Fleet Reserves-A orbiting Yarried</li>
+                        <li class="topcoat-list__item">Tingagl captured by Rolodex Empire</li>
+                        <li class="topcoat-list__item">Fleet 2 was destroyed.</li>
+                        <li class="topcoat-list__item">Fleet 2 engaging in combat.</li>
+                        <li class="topcoat-list__item">Tingagl under attack by Rolodex Empire!</li>
+                        <li class="topcoat-list__item">Tingagl was successfully defended.</li>
+                        <li class="topcoat-list__item">Fleet 2 was victorious!</li>
+                        <li class="topcoat-list__item">Fleet 2 engaging in combat.</li>
+                        <li class="topcoat-list__item">Fleet 2 arrived at Tingagl.</li>
+                    </ul>
+                </div>
+            {{else is type "planet"}}
+                <div class="topcoat-list planet-list">
+                    <h3 class="topcoat-list__header">{{capitalizeFirst model.name}}</h3>
+                    <ul class="topcoat-list__container">
+                        <li class="topcoat-list__item"><span class="label">Location:</span>({{digitGrouping model.x}}, {{digitGrouping model.y}})</li>
+                        <li class="topcoat-list__item"><span class="label">Type:</span>{{toProperCase model.planetType}}</li>
+                        <li class="topcoat-list__item"><span class="label">Quality:</span>{{digitGrouping (toFixed model.quality 2)}}</li>
+                        <li class="topcoat-list__item"><span class="label">Star:</span>{{capitalizeFirst model.starName}}</li>
+                        <li class="topcoat-list__item"><span class="label">Population:</span>{{digitGrouping model.population}} / {{digitGrouping model.maxPopulation}}</li>
+                        {{#if model.factories}}
+                            <li class="topcoat-list__item"><span class="label">Factories:</span>{{digitGrouping model.factories}} / {{digitGrouping model.maxFactories}}</li>
+                        {{/if}}
+                    </ul>
+                </div>
+            {{/is}}
         </div>
         <div class="control-right">
             <div class="chat-ticker">

@@ -374,6 +374,10 @@ app.views.MapView = Backbone.View.extend({
 
   solarObjectClick: function(event){
     this.setActiveSolarObject(event.target.model, event.target);
+    $("#control-center").trigger("targetChanged", [
+      event.target.model,
+      event.target.model.get("type")
+    ]);
   },
 
   activeSolarObject: null,

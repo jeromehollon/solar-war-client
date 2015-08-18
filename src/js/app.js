@@ -9,6 +9,8 @@ var app = {
 };
 
 $(document).on("ready", function () {
+  Swag.registerHelpers();
+
   app.linkClick = function(event){
     event.preventDefault();
 
