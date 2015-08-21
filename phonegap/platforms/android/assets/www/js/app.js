@@ -4,39 +4,43 @@ var app = {
   routers: {},
   utils: {},
   adapters: {},
-  version: "0.0.1"
+  version: "0.0.1",
+  baseUrl: "http://192.168.1.140:8080/"
 };
 
 $(document).on("ready", function () {
-  var loaditems = [
-    "HomeView",
-    "MapView",
-    "AboutView",
-    "RegisterView"
-  ];
-
-  var deferreds = [];
-
-  $.each(loaditems, function(index, view) {
-    if (app.views[view]) {
-      deferreds.push($.get('tpl/' + view + '.html', function(data) {
-        app.views[view].prototype.template = _.template(data);
-      }, 'html'));
-    } else {
-      console.log(view + " not found");
-    }
-  });
+  Swag.registerHelpers();
 
   app.linkClick = function(event){
     event.preventDefault();
 
     var href = $(event.currentTarget).attr('href');
     app.router.navigate(href, true);
-  }
+  };
 
-  $.when.apply(null, deferreds).done(function(){
-    app.router = new app.routers.AppRouter();
-    app.router.start();
-    app.router.navigate("home", true);
+  $.ajaxSetup({
+    crossDomain: true,
+    xhrFields: {
+      withCredentials: true
+    },
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json"
   });
+
+  $.ajax({
+    type: 'GET',
+    url: "tpl/app-templates.js",
+    dataType: 'text',
+    crossDomain: false
+  })
+    .done(function(templates){
+      $("body").append(templates);
+
+      app.router = new app.routers.AppRouter();
+      app.router.start();
+    })
+    .fail(function(error){
+      console.log(error.statusCode());
+    });
+
 });

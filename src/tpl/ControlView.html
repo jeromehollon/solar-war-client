@@ -36,6 +36,17 @@
                         {{/if}}
                     </ul>
                 </div>
+            {{else is type "star"}}
+            <div class="topcoat-list star-list">
+                <h3 class="topcoat-list__header">{{capitalizeFirst model.name}}</h3>
+                <ul class="topcoat-list__container">
+                    <li class="topcoat-list__item"><span class="label">Location:</span>({{digitGrouping model.x}}, {{digitGrouping model.y}})</li>
+                    <li class="topcoat-list__item"><span class="label">Type:</span>{{toProperCase model.type}}</li>
+                    {{#each model.planets}}
+                        <li class="topcoat-list__item"><span class="label">Planet:</span>{{toProperCase this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
             {{/is}}
         </div>
         <div class="control-right">
@@ -43,9 +54,17 @@
                 Unread: <span class="chat-ticker-item global">4</span><span class="chat-ticker-item private">8</span>
             </div>
             <div class="menu">
-                <button class="topcoat-button" disabled>View</button>
+                {{#is type "eventlog"}}
+                    <button class="topcoat-button" disabled>View</button>
+                {{else is type "planet"}}
+                    <button class="topcoat-button" data-id="{{model.id}}">View</button>
+                {{else is type "star"}}
+                    <button class="topcoat-button" data-id="{{model.id}}">View</button>
+                {{else}}
+                    <button class="topcoat-button" disabled>View</button>
+                {{/is}}
                 <button class="topcoat-button">Empire</button>
-                <button class="topcoat-button">Alliance</button>
+                <button class="topcoat-button">Clan</button>
                 <button class="topcoat-button">Galaxy</button>
             </div>
         </div>

@@ -5,14 +5,17 @@ app.views.MapView = Backbone.View.extend({
   planetSize: 30,
   starSize: 40,
 
+  //a subview
+  controlView: null,
+
   initialize: function() {
     _(this).bindAll("render", "renderStars", "positionSolarObject", "animate", "mousemove", "mouseup", "mousedown",
       "setActiveSolarObject", "solarObjectClick", "decorateSolarObject", "decoratePlanet", "decorateStar");
 
     this.collection = new app.models.GalaxyCollection();
+    this.collection.fetch({reset: true, success: this.render});
 
-    this.collection.bind("reset", this.render);
-    this.collection.fetch({reset: true});
+    this.template = Handlebars.compile($("#map-view-template").html());
   },
 
   render: function () {
@@ -53,6 +56,11 @@ app.views.MapView = Backbone.View.extend({
 
     this.firstFrame = true;
     requestAnimationFrame(this.animate);
+
+
+    //setup control view
+    this.controlView = new app.views.ControlView();
+    this.controlView.render();
 
     return this;
   },
@@ -366,6 +374,10 @@ app.views.MapView = Backbone.View.extend({
 
   solarObjectClick: function(event){
     this.setActiveSolarObject(event.target.model, event.target);
+    $("#control-center").trigger("targetChanged", [
+      event.target.model,
+      event.target.model.get("type")
+    ]);
   },
 
   activeSolarObject: null,

@@ -7,18 +7,31 @@ app.models.Galaxy = Backbone.Model.extend({
 
 app.models.GalaxyCollection = Backbone.Collection.extend({
   model: app.models.Galaxy,
-  url: "http://192.168.1.140:8080/api/map/all",
+  url: app.baseUrl + "api/map/all",
+
+  customFetchSuccess: null,
+  customFetchFailure: null,
 
 
   initialize: function(){
-    _(this).bindAll("fetchSuccess");
+    _(this).bindAll("fetchSuccess", "fetchError", "fetch");
     this.starCollection = new app.models.StarCollection();
     this.planetCollection = new app.models.StarCollection();
+  },
 
-    this.fetch({
-      success: this.fetchSuccess,
-      error: this.fetchError
-    });
+  fetch: function(options) {
+    if(options.success){
+      this.customFetchSuccess = options.success;
+    }
+    if(options.error){
+      this.customFetchFailure = options.error;
+    }
+
+    options.success = this.fetchSuccess;
+    options.error = this.fetchError;
+
+    //call backbone's default fetch
+    return Backbone.Collection.prototype.fetch.call(this, options);
   },
 
   fetchSuccess: function(collection, response) {
@@ -36,11 +49,18 @@ app.models.GalaxyCollection = Backbone.Collection.extend({
 
     collection.starCollection.set(starModels);
     collection.planetCollection.set(planetModels);
+
+
+    if(this.customFetchSuccess){
+      this.customFetchSuccess(collection, response);
+      this.customFetchSuccess = null;
+    }
   },
 
   fetchError: function (collection, response) {
-    console.log("FetchError: ");
-    console.log(JSON.stringify(response));
-    throw new Error("Galaxy fetch error");
+    if(this.customFetchFailure){
+      this.customFetchFailure(collection, response);
+      this.customFetchFailure = null;
+    }
   }
 });
