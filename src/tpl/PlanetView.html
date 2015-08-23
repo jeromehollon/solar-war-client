@@ -1,0 +1,87 @@
+<script id="planet-view-template" type="text/x-handlebars-template">
+    <div id="planet-view" class="topcoat-grid">
+        <div class="topcoat-navigation-bar">
+            <div class="topcoat-navigation-bar__item topcoat-grid__row">
+                <button class="topcoat-icon-button--quiet" href="#map">
+                    <span class="topcoat-icon icomatic">back</span>
+                </button>
+                <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
+                    <h1 class="topcoat-navigation-bar__title">{{capitalizeFirst planet.name}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="topcoat-grid__row">
+            <div class="topcoat-grid__column--auto">
+                <div class="tabnav">
+                    <nav class="tabnav-tabs">
+                        <a href="#" class="tabnav-tab selected">Info</a>
+                        <a href="#" class="tabnav-tab">Build</a>
+                        <a href="#" class="tabnav-tab">Fleet</a>
+                        <a href="#" class="tabnav-tab">Management</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="panel-info" class="active panel">
+            <div class="topcoat-grid__row">
+                <div class="topcoat-grid__column--auto">
+                    <h3>{{capitalizeFirst planet.name}}</h3>
+
+                    <div class="topcoat-list">
+                        <h3 class="topcoat-list__header">Stats</h3>
+                        <ul class="topcoat-list__container">
+                            <li class="topcoat-list__item"><span class="label">Location:</span>({{digitGrouping model.x}}, {{digitGrouping model.y}})</li>
+                            <li class="topcoat-list__item"><span class="label">Type:</span>{{toProperCase model.planetType}}</li>
+                            <li class="topcoat-list__item"><span class="label">Quality:</span>{{digitGrouping (toFixed model.quality 2)}}</li>
+                            <li class="topcoat-list__item"><span class="label">Star:</span>{{capitalizeFirst model.starName}}</li>
+                            <li class="topcoat-list__item"><span class="label">Population:</span>{{digitGrouping model.population}} / {{digitGrouping model.maxPopulation}}</li>
+                            {{#if model.factories}}
+                            <li class="topcoat-list__item"><span class="label">Factories:</span>{{digitGrouping model.factories}} / {{digitGrouping model.maxFactories}}</li>
+                            {{/if}}
+                            <li class="topcoat-list__item"><span class="label">Supply:</span>-100</li>
+                            <li class="topcoat-list__item"><span class="label">Fleets:</span>1</li>
+                        </ul>
+                    </div>
+                    <div class="topcoat-list">
+                        <h3 class="topcoat-list__header">Production Info</h3>
+                        <ul class="topcoat-list__container">
+                            <li class="topcoat-list__item"><span class="label">Production Units:</span>1645</li>
+                            <li class="topcoat-list__item"><span class="label">Superstructure:</span>None - Building Industrial Complex</li>
+                            <!-- If building -->
+                            <li class="topcoat-list__item"><span class="label">Superstructure Time:</span>36:45</li>
+
+                            <!-- production list-->
+                            <li class="topcoat-list__item"><span class="label">Fighters:</span>0%</li>
+                            <li class="topcoat-list__item"><span class="label">Frigates:</span>10%</li>
+                            <li class="topcoat-list__item"><span class="label">Battleships:</span>15%</li>
+                            <li class="topcoat-list__item"><span class="label">Ageis Cruisers:</span>5%</li>
+                            <li class="topcoat-list__item"><span class="label">Orbital Stations:</span>0%</li>
+                            <li class="topcoat-list__item"><span class="label">Troop Transports:</span>0%</li>
+                            <li class="topcoat-list__item"><span class="label">Factories:</span>40%</li>
+                            <li class="topcoat-list__item"><span class="label">Superstructure:</span>30%</li>
+                        </ul>
+                    </div>
+                    <div class="topcoat-list">
+                        <h3 class="topcoat-list__header">Garrison Info</h3>
+                        <ul class="topcoat-list__container">
+                            <li class="topcoat-list__item"><span class="label">Firepower:</span>1200</li>
+                            <li class="topcoat-list__item"><span class="label">Shielding:</span>100</li>
+                            <li class="topcoat-list__item"><span class="label">Armor:</span>2000</li>
+                            <li class="topcoat-list__item"><span class="label">Supply:</span>300</li>
+                        </ul>
+                    </div>
+                    <!--foreach fleet-->
+                    <div class="topcoat-list">
+                        <h3 class="topcoat-list__header">Fleet A Info</h3>
+                        <ul class="topcoat-list__container">
+                            <li class="topcoat-list__item"><span class="label">Firepower:</span>1200</li>
+                            <li class="topcoat-list__item"><span class="label">Shielding:</span>100</li>
+                            <li class="topcoat-list__item"><span class="label">Armor:</span>2000</li>
+                            <li class="topcoat-list__item"><span class="label">Supply:</span>200</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
