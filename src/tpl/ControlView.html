@@ -55,17 +55,17 @@
             </div>
             <div class="menu">
                 {{#is type "eventlog"}}
-                    <button class="topcoat-button" disabled>View</button>
+                    <button class="topcoat-button btn-view" disabled>View</button>
                 {{else is type "planet"}}
-                    <button class="topcoat-button" data-id="{{model.id}}">View</button>
+                    <button class="topcoat-button btn-view-planet" data-id="{{model.id}}">View</button>
                 {{else is type "star"}}
-                    <button class="topcoat-button" data-id="{{model.id}}">View</button>
+                    <button class="topcoat-button btn-view-star" data-id="{{model.id}}">View</button>
                 {{else}}
-                    <button class="topcoat-button" disabled>View</button>
+                    <button class="topcoat-button btn-view" disabled>View</button>
                 {{/is}}
-                <button class="topcoat-button">Empire</button>
-                <button class="topcoat-button">Clan</button>
-                <button class="topcoat-button">Galaxy</button>
+                <button class="topcoat-button btn-empire">Empire</button>
+                <button class="topcoat-button btn-clan">Clan</button>
+                <button class="topcoat-button btn-galaxy">Galaxy</button>
             </div>
         </div>
     </div>

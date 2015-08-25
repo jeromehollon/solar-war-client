@@ -1,0 +1,47 @@
+.panel-view {
+  .panel {
+    display: none;
+
+    &.active {
+      display:block;
+    }
+  }
+}
+
+#panel-build {
+
+  .production-item {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .production-item-image {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .info {
+    div {
+      margin-left: 10px;
+      margin-bottom: 1em;
+    }
+
+    .progress-bar {
+      position: relative;
+      width: 100%;
+
+      .bar {
+        border-top: 5px solid @md-clr-blue;
+        content: '';
+        display: inline;
+        position: absolute;
+        top: 1.5em;
+        left: 0px;
+        width: "1%";
+      }
+
+    }
+  }
+
+}

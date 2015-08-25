@@ -9,7 +9,7 @@ h1, h2, h3, h4, h5, h6, {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-#container {
+#container, #overlay {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -17,6 +17,11 @@ h1, h2, h3, h4, h5, h6, {
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 0;
+}
+#overlay {
+  display: none;
+  z-index: 1;
 }
 
 

@@ -35,7 +35,10 @@ var paths = {
 	
 }
 
-gulp.task('default', ['watch', 'copyToPhonegap', 'minify-libs', 'minify', 'lessify', 'build-templates'], function() {
+gulp.task('default', ['copyToPhonegap', 'minify-libs', 'minify', 'lessify', 'build-templates'], function() {
+});
+
+gulp.task('dev', ['watch', 'copyToPhonegap', 'concat-libs', 'concat-js', 'concat-lessify', 'build-templates'], function() {
 });
 
 gulp.task('clean', function(cb){
@@ -51,29 +54,45 @@ gulp.task('copy-assets', function() {
 });
 
 gulp.task('minify-libs', function(){
-	return gulp.src(paths.jslibs)
-		.pipe(plugins.uglify())
-		.pipe(plugins.concat('app-libs.js'))
-		.pipe(gulp.dest(paths.dest + "js"));		
+  return gulp.src(paths.jslibs)
+    .pipe(plugins.uglify())
+    .pipe(plugins.concat('app-libs.js'))
+    .pipe(gulp.dest(paths.dest + "js"));
 });
 gulp.task('minify', function(){
-	return gulp.src(paths.jsapp)
-		.pipe(plugins.uglify())
-		.pipe(plugins.concat('app.min.js'))
-		.pipe(gulp.dest(paths.dest + "js"));		
+  return gulp.src(paths.jsapp)
+    .pipe(plugins.uglify())
+    .pipe(plugins.concat('app.min.js'))
+    .pipe(gulp.dest(paths.dest + "js"));
+});
+gulp.task('concat-libs', function(){
+  return gulp.src(paths.jslibs)
+    .pipe(plugins.concat('app-libs.js'))
+    .pipe(gulp.dest(paths.dest + "js"));
+});
+gulp.task('concat-js', function(){
+  return gulp.src(paths.jsapp)
+    .pipe(plugins.concat('app.min.js'))
+    .pipe(gulp.dest(paths.dest + "js"));
 });
 
-gulp.task('lessify', function() {		
-	return gulp.src('src/css/styles.less')
-		.pipe(less())
-		.pipe(plugins.minifyCss())
-		.pipe(gulp.dest(paths.dest + "css"));
+gulp.task('lessify', function() {
+  return gulp.src('src/css/styles.less')
+    .pipe(less())
+    .pipe(plugins.minifyCss())
+    .pipe(gulp.dest(paths.dest + "css"));
+});
+gulp.task('concat-lessify', function() {
+  return gulp.src('src/css/styles.less')
+    .pipe(less())
+    .pipe(plugins.concat("styles.css"))
+    .pipe(gulp.dest(paths.dest + "css"));
 });
 
 gulp.task('watch', function() {
-	gulp.watch(paths.jslibs, ['minify-libs']);
-	gulp.watch(paths.less, ['lessify']);
-	gulp.watch(paths.jsapp, ['minify']);
+	gulp.watch(paths.jslibs, ['concat-libs']);
+	gulp.watch(paths.less, ['concat-lessify']);
+	gulp.watch(paths.jsapp, ['concat-js']);
   gulp.watch(paths.assets, ['copy-assets']);
   gulp.watch(paths.templates, ['build-templates']);
 });

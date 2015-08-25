@@ -2,22 +2,27 @@ app.views.ControlView = Backbone.View.extend({
   el: "#control-center",
   playerModel: null,
 
-  collection: new app.models.PlayerCollection(),
+  playerCollection: new app.models.PlayerCollection(),
+  planetCollection: null,  //defined on initialization
+  starCollection: null, //defined on init
 
-  initialize: function () {
+  initialize: function (options) {
     this.template = Handlebars.compile($("#control-view-template").html());
-    _(this).bindAll("render", "targetChanged");
+    _(this).bindAll("render", "targetChanged", "btnViewPlanetClick");
 
-    this.collection.fetch({
+    this.playerCollection.fetch({
       success: this.render
     });
+
+    this.planetCollection = options.planetCollection;
+    this.starCollection = options.starCollection;
   },
 
 
   render: function () {
 
-    if(this.collection.models[0]){
-      this.playerModel = this.collection.models[0];
+    if(this.playerCollection.models[0]){
+      this.playerModel = this.playerCollection.models[0];
     }
 
     this.$el.html(this.template({player: this.playerModel, type: "eventlog"}));
@@ -48,7 +53,10 @@ app.views.ControlView = Backbone.View.extend({
     }
 
     var updateFunc = function(data) {
+      this.parent.model = data;
       this.parent.$el.html(this.parent.template({player: this.parent.playerModel, model: data, type: this.type}));
+
+      $(".btn-view-planet", this.parent.$el).on("click", this.parent.btnViewPlanetClick);
     }
 
     updateFunc = _.bind(updateFunc, {
@@ -56,5 +64,10 @@ app.views.ControlView = Backbone.View.extend({
       type: type
     });
     $.get(url, updateFunc);
+  },
+
+  btnViewPlanetClick : function(event){
+    var view = new app.views.PlanetView({planet: this.model});
+    view.render();
   }
 });
