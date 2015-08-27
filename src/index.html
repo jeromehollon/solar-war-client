@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="ui-mobile">
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -16,8 +16,11 @@
 
         <script src="js/app.min.js"></script>
     </head>
-    <body>
-        <div id="container">Loading...</div>
-        <div id="overlay"></div>
+    <body class="ui-mobile-viewport ui-overlay-a">
+        <div class="ui-page ui-page-theme-a ui-page-active">
+            <div id="container" class="ui-content">Loading...</div>
+            <div id="overlay" class="ui-content"></div>
+            <div id="dialog" class="ui-content"></div>
+        </div>
     </body>
 </html>

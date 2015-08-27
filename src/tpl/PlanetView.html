@@ -88,6 +88,9 @@
                 <div class="topcoat-grid__column--auto">
                     <h3>{{capitalizeFirst model.name}} Build</h3>
                 </div>
+                <div class="topcoat-grid__column--3 menu">
+                    <button class="topcoat-button btn-builds">Edit</button>
+                </div>
             </div>
             <div class="production-item topcoat-grid__row">
                 <img src="img/production-items/fighter.png" class="production-item-image topcoat-grid__column--1" />
@@ -167,6 +170,57 @@
                 <div class="topcoat-grid__column--auto">
                     <h3>{{capitalizeFirst model.name}} Fleets</h3>
                 </div>
+
+                <div class="topcoat-grid__row">
+                    <div class="topcoat-grid__column--auto">
+                        <div class="topcoat-list">
+                            <h3 class="topcoat-list__header">Garrison Info</h3>
+                            <ul class="topcoat-list__container">
+                                <li class="topcoat-list__item"><span class="label">Fighters: </span>50</li>
+                                <li class="topcoat-list__item"><span class="label">Frigates: </span>100</li>
+                                <li class="topcoat-list__item"><span class="label">Battleships: </span>5</li>
+                                <li class="topcoat-list__item"><span class="label">Ageis Cruisers: </span>5</li>
+                                <li class="topcoat-list__item"><span class="label">Troop Transports: </span>0</li>
+                                <li class="topcoat-list__item"><span class="label">Orbital Stations: </span>1000</li>
+                                <li class="topcoat-list__item">&nbsp;</li>
+                                <li class="topcoat-list__item"><span class="label">Firepower: </span>1200</li>
+                                <li class="topcoat-list__item"><span class="label">Shielding: </span>100</li>
+                                <li class="topcoat-list__item"><span class="label">Armor: </span>2000</li>
+                                <li class="topcoat-list__item"><span class="label">Supply: </span>300</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="topcoat-grid__column--3 menu">
+                        <button class="topcoat-button btn-create">Create New Fleet</button>
+                        <button class="topcoat-button btn-merge">Merge To Fleet</button>
+                    </div>
+                </div>
+                <!--foreach fleet-->
+                <div class="topcoat-grid__row">
+                    <div class="topcoat-grid__column--auto">
+                        <div class="topcoat-list">
+                            <h3 class="topcoat-list__header">Fleet A Info</h3>
+                            <ul class="topcoat-list__container">
+                                <li class="topcoat-list__item"><span class="label">Fighters: </span>50</li>
+                                <li class="topcoat-list__item"><span class="label">Frigates: </span>100</li>
+                                <li class="topcoat-list__item"><span class="label">Battleships: </span>5</li>
+                                <li class="topcoat-list__item"><span class="label">Ageis Cruisers: </span>5</li>
+                                <li class="topcoat-list__item"><span class="label">Troop Transports: </span>0</li>
+                                <li class="topcoat-list__item">&nbsp;</li>
+                                <li class="topcoat-list__item"><span class="label">Firepower: </span>1200</li>
+                                <li class="topcoat-list__item"><span class="label">Shielding: </span>100</li>
+                                <li class="topcoat-list__item"><span class="label">Armor: </span>2000</li>
+                                <li class="topcoat-list__item"><span class="label">Supply: </span>200</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="topcoat-grid__column--3 menu">
+                        <button class="topcoat-button btn-merge">Move</button>
+                        <button class="topcoat-button btn-merge">Rename</button>
+                        <button class="topcoat-button btn-create">Create New Fleet</button>
+                        <button class="topcoat-button btn-merge">Merge To Fleet</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="panel-management" class="panel">
@@ -174,6 +228,141 @@
                 <div class="topcoat-grid__column--auto">
                     <h3>{{capitalizeFirst model.name}} Management</h3>
                 </div>
+            </div>
+            <div class="topcoat-grid__row">
+                <div class="topcoat-grid__column--auto">
+                    <i>Nothing to see here...come back later.</i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog">
+        <div class="topcoat-navigation-bar top-bar">
+            <div class="topcoat-navigation-bar__item topcoat-grid__row">
+                <button id="btn-close" class="topcoat-icon-button--quiet">
+                    <span class="topcoat-icon icomatic">back</span>
+                </button>
+                <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
+                    <h1 class="topcoat-navigation-bar__title">Manage Build Settings</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/fighter.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Fighters</h4>
+                <div id="build-fighters" class="slider" data-value="0" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/frigate.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Frigates</h4>
+                <div id="frigatesbuild-" class="slider" data-value="10" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/battleship.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Battleships</h4>
+                <div id="build-battleships" class="slider" data-value="15" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Ageis Cruisers</h4>
+                <div id="build-ageis-cruisers" class="slider" data-value="0" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/orbital-station.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Orbital Stations</h4>
+                <div id="build-orbital-stations" class="slider" data-value="0" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/troop-transport.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Troop Transport</h4>
+                <div id="build-troop-transport" class="slider" data-value="0" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Factories</h4>
+                <div id="build-factories" class="slider" data-value="40" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+        <div class="production-item topcoat-grid__row">
+            <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="info topcoat-grid__column--auto">
+                <h4>Superstructure - Industrial Complex</h4>
+                <div id="build-superstructure" class="slider" data-value="30" />
+            </div>
+            <div class="controls topcoat-grid__column--3">
+                <span class="value-holder">&nbsp;</span>
+                <button class="topcoat-icon-button">
+                    <span class="topcoat-icon icomatic">unlock</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="topcoat-navigation-bar bottom-bar">
+            <div class="topcoat-navigation-bar__item left quarter">
+                <div id="build-points">
+                    Remaining: <span id="remaining-build-points">0</span>
+                </div>
+            </div>
+            <div class="topcoat-navigation-bar__item right quarter">
+                <button class="topcoat-button">Cancel</button>
+                <button class="topcoat-button">OK</button>
             </div>
         </div>
     </div>

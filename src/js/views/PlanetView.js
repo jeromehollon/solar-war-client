@@ -3,7 +3,7 @@ app.views.PlanetView = Backbone.View.extend({
   planet: null,
 
   initialize: function (options) {
-    _(this).bindAll("render", "close", "tabClick");
+    _(this).bindAll("render", "close", "tabClick", "editBuilds", "onSlide");
     this.template = Handlebars.compile($("#planet-view-template").html());
     this.planet = options.planet;
   },
@@ -15,6 +15,7 @@ app.views.PlanetView = Backbone.View.extend({
 
     $("#btn-back", this.$el).on("click", this.close);
     $(".tabnav-tab", this.$el).on("click", this.tabClick);
+    $(".btn-builds", this.$el).on("click", this.editBuilds);
 
     //do the progress bars
     _($(".progress-bar", this.$el)).each(function(bar){
@@ -25,6 +26,13 @@ app.views.PlanetView = Backbone.View.extend({
       if(progress == 0){
         $(".bar", bar).css("width", "5px");
       }
+    });
+
+    $(".dialog", this.$el).popup({
+      transition: 'all 0.3s',
+      scrolllock: true,
+      closeelement: '#btn-close',
+      escape: false
     });
 
     return this;
@@ -43,8 +51,28 @@ app.views.PlanetView = Backbone.View.extend({
     $("#" + panel, this.$el).addClass("active");
   },
 
+  editBuilds: function(event){
+    $(".dialog").popup("show");
+
+    var sliders = $(".slider", ".dialog")
+    for(var i = 0; i < sliders.length; i++) {
+      $(sliders[i]).slider({
+        min: 0,
+        max: 100,
+        value: $(sliders[i]).data("value"),
+        slide: this.onSlide
+      })
+    }
+  },
+
   close: function() {
     this.$el.html("");
     $(this.$el).hide();
+  },
+
+  onSlide: function(event, ui){
+    console.log(ui.value);
   }
+
+
 });
