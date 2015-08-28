@@ -93,7 +93,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/fighter.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/fighter.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Fighters</h4>
                     <div class="progress-bar" data-value="0">Build: 0%</div>
@@ -102,7 +104,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/frigate.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/frigate.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Frigates</h4>
                     <div class="progress-bar" data-value="10">Build: 10%</div>
@@ -111,7 +115,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/battleship.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/battleship.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Battleships</h4>
                     <div class="progress-bar" data-value="15">Build: 15%</div>
@@ -120,7 +126,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/ageis-cruiser.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Ageis Cruisers</h4>
                     <div class="progress-bar" data-value="5">Build: 5%</div>
@@ -129,7 +137,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/orbital-station.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/orbital-station.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Orbital Stations</h4>
                     <div class="progress-bar" data-value="0">Build: 0%</div>
@@ -138,7 +148,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/troop-transport.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/troop-transport.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Troop Transport</h4>
                     <div class="progress-bar" data-value="0">Build: 0%</div>
@@ -147,7 +159,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/ageis-cruiser.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Factories</h4>
                     <div class="progress-bar" data-value="40">Build: 40%</div>
@@ -156,7 +170,9 @@
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
-                <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+                <div class="topcoat-grid__column--1">
+                    <img src="img/production-items/ageis-cruiser.png" class="production-item-image" />
+                </div>
                 <div class="info topcoat-grid__column--auto">
                     <h4>Superstructure - Industrial Complex</h4>
                     <div class="progress-bar" data-value="30">Build: 30%</div>
@@ -250,10 +266,12 @@
         </div>
 
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/fighter.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/fighter.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Fighters</h4>
-                <div id="build-fighters" class="slider" data-value="0" />
+                <input type="range" name="build-fighters" id="build-fighters" class="slider"  value="0" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -263,10 +281,12 @@
             </div>
         </div>
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/frigate.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/frigate.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Frigates</h4>
-                <div id="frigatesbuild-" class="slider" data-value="10" />
+                <input type="range" name="build-frigates" id="build-frigates" class="slider"  value="10" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -276,10 +296,12 @@
             </div>
         </div>
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/battleship.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/battleship.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Battleships</h4>
-                <div id="build-battleships" class="slider" data-value="15" />
+                <input type="range" name="build-battleships" id="build-battleships" class="slider"  value="15" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -289,10 +311,12 @@
             </div>
         </div>
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/ageis-cruiser.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Ageis Cruisers</h4>
-                <div id="build-ageis-cruisers" class="slider" data-value="0" />
+                <input type="range" name="build-ageis-cruisers" id="build-ageis-cruisers" class="slider"  value="0" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -302,10 +326,12 @@
             </div>
         </div>
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/orbital-station.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/orbital-station.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Orbital Stations</h4>
-                <div id="build-orbital-stations" class="slider" data-value="0" />
+                <input type="range" name="build-orbital-stations" id="build-orbital-stations" class="slider"  value="0" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -315,10 +341,12 @@
             </div>
         </div>
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/troop-transport.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/troop-transport.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Troop Transport</h4>
-                <div id="build-troop-transport" class="slider" data-value="0" />
+                <input type="range" name="build-troop-transport" id="build-troop-transport" class="slider"  value="0" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -328,10 +356,12 @@
             </div>
         </div>
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/ageis-cruiser.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Factories</h4>
-                <div id="build-factories" class="slider" data-value="40" />
+                <input type="range" name="build-factories" id="build-factories" class="slider"  value="40" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -341,10 +371,12 @@
             </div>
         </div>
         <div class="production-item topcoat-grid__row">
-            <img src="img/production-items/ageis-cruiser.png" class="production-item-image topcoat-grid__column--1" />
+            <div class="topcoat-grid__column--1">
+                <img src="img/production-items/ageis-cruiser.png" class="production-item-image" />
+            </div>
             <div class="info topcoat-grid__column--auto">
                 <h4>Superstructure - Industrial Complex</h4>
-                <div id="build-superstructure" class="slider" data-value="30" />
+                <input type="range" name="build-superstructure" id="build-superstructure" class="slider"  value="30" min="0" max="100" />
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
@@ -354,13 +386,14 @@
             </div>
         </div>
 
-        <div class="topcoat-navigation-bar bottom-bar">
-            <div class="topcoat-navigation-bar__item left quarter">
+        <div class="topcoat-navigation-bar bottom-bar topcoat-grid__row">
+            <div class="topcoat-navigation-bar__item left topcoat-grid__column--3">
                 <div id="build-points">
                     Remaining: <span id="remaining-build-points">0</span>
                 </div>
             </div>
-            <div class="topcoat-navigation-bar__item right quarter">
+            <div class="topcoat-grid__column--auto"><!-- Spacer -->&nbsp;</div>
+            <div class="topcoat-navigation-bar__item right topcoat-grid__column--3">
                 <button class="topcoat-button">Cancel</button>
                 <button class="topcoat-button">OK</button>
             </div>

@@ -2,8 +2,8 @@ app.views.MapView = Backbone.View.extend({
   el: "#container",
 
   scale: 3, //Scale at which the world is rendered.
-  planetSize: 30,
-  starSize: 40,
+  planetSize: 25,
+  starSize: 35,
 
   //a subview
   controlView: null,

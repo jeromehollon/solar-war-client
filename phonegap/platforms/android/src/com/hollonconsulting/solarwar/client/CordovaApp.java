@@ -28,7 +28,9 @@ public class CordovaApp extends CordovaActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        super.init();
+        super.init(); 
+		super.appView.getSettings().setUseWideViewPort(true);
+		super.appView.getSettings().setLoadWithOverviewMode(true);
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }

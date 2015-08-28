@@ -9,6 +9,8 @@ var app = {
 };
 
 $(document).on("ready", function () {
+  console.log("Window size: (" + window.innerWidth + ", " + window.innerHeight + ")");
+
   Swag.registerHelpers();
 
   app.linkClick = function(event){

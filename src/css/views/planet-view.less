@@ -8,7 +8,7 @@
   }
 }
 
-#panel-build {
+#panel-build, .dialog {
 
   .production-item {
     border-bottom: 1px solid black;
@@ -19,6 +19,10 @@
   .production-item-image {
     max-height: 100%;
     max-width: 100%;
+  }
+
+  .topcoat-grid__column--1 {
+    overflow: hidden;
   }
 
   .info {
@@ -41,6 +45,14 @@
         width: "1%";
       }
 
+    }
+  }
+  .controls {
+    .value-holder {
+      margin: 0 10px;
+      width: 2em;
+      text-align: left;
+      display: inline-block;
     }
   }
 }

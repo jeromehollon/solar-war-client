@@ -3,7 +3,7 @@ app.views.PlanetView = Backbone.View.extend({
   planet: null,
 
   initialize: function (options) {
-    _(this).bindAll("render", "close", "tabClick", "editBuilds", "onSlide");
+    _(this).bindAll("render", "close", "tabClick", "editBuilds", "onSlide", "onChange");
     this.template = Handlebars.compile($("#planet-view-template").html());
     this.planet = options.planet;
   },
@@ -56,13 +56,13 @@ app.views.PlanetView = Backbone.View.extend({
 
     var sliders = $(".slider", ".dialog")
     for(var i = 0; i < sliders.length; i++) {
-      $(sliders[i]).slider({
-        min: 0,
-        max: 100,
-        value: $(sliders[i]).data("value"),
-        slide: this.onSlide
-      })
+      var value = $(sliders[i]).val();
+      var productionItem = $(sliders[i]).parent().parent();
+
+      $(".value-holder", productionItem).html(value + "%");
     }
+    $(".slider", ".dialog").on("change", this.onChange);
+    $(".slider", ".dialog").on("input", this.onSlide);
   },
 
   close: function() {
@@ -70,9 +70,123 @@ app.views.PlanetView = Backbone.View.extend({
     $(this.$el).hide();
   },
 
-  onSlide: function(event, ui){
-    console.log(ui.value);
+  /*
+    Handles when the user let's go of the mouse.
+   */
+  ignoreChanges: false,
+  onChange: function(event){
+    event.stopImmediatePropagation();
+
+    if(this.ignoreChanges) return;
+    this.ignoreChanges = true;
+
+    var value = parseInt($(event.currentTarget).val(),10);
+    var productionItems = $(event.currentTarget).parents(".dialog");
+
+    var disabledSliders = $("input[type=range]:disabled", productionItems);
+    var enabledSliders = $("input[type=range]:enabled", productionItems).not($(event.currentTarget));
+
+    var disabledQuantity = 0; //quantity that's locked up in disabled sliders we can't change
+    for(var i = 0; i < disabledSliders .length; i++){
+      disabledQuantity += parseInt($(disabledSliders [i]).val(), 10);
+    }
+
+    var enabledQuality = 0; //quantity that's in enabled sliders that are changable
+    for(var i = 0; i < enabledSliders.length; i++){
+      enabledQuality += parseInt($(enabledSliders[i]).val(), 10);
+    }
+
+    if(value + disabledQuantity > 100){
+      console.log("value + disabledQuantity > 100");
+      $(event.currentTarget).val(100 - disabledQuantity);
+      for(var i = 0; i < enabledSliders.length; i++){
+        $(enabledSliders[i]).val(0);
+      }
+      this.ignoreChanges = false;
+      return;
+    }
+
+    var changePerSlideAbsolute = (100 - (value + enabledQuality)) / enabledSliders.length;
+    var changePerSlide = Math.floor(changePerSlideAbsolute);
+    var changePerSlideRemainder = (100 - (value + enabledQuality + changePerSlide * enabledSliders.length));
+    if(changePerSlide >= 0){
+      for(var i = 0; i < enabledSliders.length; i++){
+        var newVal = parseInt($(enabledSliders[i]).val(),10) + changePerSlide;
+        if(changePerSlideRemainder > 0){
+          newVal++;
+          changePerSlideRemainder--;
+        }
+        if(changePerSlideRemainder > 0){
+          newVal--;
+          changePerSlideRemainder++;
+        }
+        $(enabledSliders[i]).val(newVal);
+      }
+    }else {
+      //we gotta decrease
+      do {
+        var movableSliders = this.nonZero($("input[type=range]:enabled", productionItems).not(event.currentTarget));
+        var movableValue = 0;
+        for (var i = 0; i < movableSliders.length; i++) {
+          movableValue += parseInt($(movableSliders[i]).val(), 10);
+        }
+
+        changePerSlideAbsolute = Math.floor((100 - (value + movableValue)) / movableSliders.length);
+        changePerSlide = Math.floor(changePerSlideAbsolute);
+        changePerSlideRemainder = (100 - (value + movableValue + changePerSlide * movableSliders.length));
+
+
+        for (var i = 0; i < movableSliders.length; i++) {
+          var newVal = parseInt($(movableSliders[i]).val(), 10) + changePerSlide;
+
+          if(changePerSlideRemainder > 0){
+            newVal++;
+            changePerSlideRemainder--;
+          }
+          if(changePerSlideRemainder > 0){
+            newVal--;
+            changePerSlideRemainder++;
+          }
+
+          $(movableSliders[i]).val(newVal);
+        }
+
+      } while (changePerSlide < 0);
+    }
+
+    var allSliders = $("input[type=range]", productionItems);
+    var totalValue = 0;
+    for(var i = 0; i < allSliders.length; i++){
+
+      var value = parseInt($(allSliders[i]).val(), 10);
+      var productionItem = $(allSliders[i]).parents(".production-item");
+
+      $(".value-holder", productionItem).html(value + "%");
+
+      totalValue += parseInt($(allSliders[i]).val(), 10);
+    }
+    $("#remaining-build-points").html(100-totalValue);
+
+    this.ignoreChanges = false;
+  },
+
+  /*
+    Handles when the user moves, but hasn't always let go yet.
+   */
+  onSlide: function(event){
+    var value = $(event.currentTarget).val();
+    var productionItem = $(event.currentTarget).parents(".production-item");
+
+    $(".value-holder", productionItem).html(value + "%");
+  },
+
+  nonZero: function(elements) {
+    var nonzeros = [];
+    for(var i = 0; i < elements.length; i++){
+      if(parseInt($(elements[i]).val(),10) != 0){
+        nonzeros.push(elements[i]);
+      }
+    }
+    return nonzeros;
   }
-
-
 });
