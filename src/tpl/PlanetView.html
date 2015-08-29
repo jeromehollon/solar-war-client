@@ -18,6 +18,7 @@
                         <a class="tabnav-tab" data-panel="panel-build">Build</a>
                         <a class="tabnav-tab" data-panel="panel-fleet">Fleet</a>
                         <a class="tabnav-tab" data-panel="panel-management">Management</a>
+                        <a class="tabnav-tab" data-panel="panel-help">Help</a>
                     </nav>
                 </div>
             </div>
@@ -88,8 +89,16 @@
                 <div class="topcoat-grid__column--auto">
                     <h3>{{capitalizeFirst model.name}} Build</h3>
                 </div>
-                <div class="topcoat-grid__column--3 menu">
-                    <button class="topcoat-button btn-builds">Edit</button>
+            </div>
+            <div class="topcoat-grid__row">
+                <div class="topcoat-grid__column--auto menu">
+                    <button class="topcoat-button btn-builds">Edit Build</button>
+                    <button class="topcoat-button btn-builds-info">View Build Info</button>
+                </div>
+                <div class="topcoat-grid__column--auto menu">
+                    <button class="topcoat-button btn-builds-create-bookmark">Bookmark Build</button>
+                    <button class="topcoat-button btn-builds-set-bookmark">Set To Bookmark</button>
+                    <button class="topcoat-button btn-builds-bookmarks">Manage Bookmarks</button>
                 </div>
             </div>
             <div class="production-item topcoat-grid__row">
@@ -206,7 +215,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="topcoat-grid__column--3 menu">
+                    <div class="topcoat-grid__column--auto menu">
                         <button class="topcoat-button btn-create">Create New Fleet</button>
                         <button class="topcoat-button btn-merge">Merge To Fleet</button>
                     </div>
@@ -230,8 +239,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="topcoat-grid__column--3 menu">
-                        <button class="topcoat-button btn-merge">Move</button>
+                    <div class="topcoat-grid__column--auto menu">
+                        <button class="topcoat-button btn-move">Move</button>
                         <button class="topcoat-button btn-merge">Rename</button>
                         <button class="topcoat-button btn-create">Create New Fleet</button>
                         <button class="topcoat-button btn-merge">Merge To Fleet</button>
@@ -248,15 +257,25 @@
             <div class="topcoat-grid__row">
                 <div class="topcoat-grid__column--auto">
                     <i>Nothing to see here...come back later.</i>
+                    <p>Don't forget to add doomsday controls.</p>
+                    <ul>
+                        <li>Detonate on fleet defeat.</li>
+                        <li>Detonate on bombardment.</li>
+                        <li>Detonate on invasion.</li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div id="panel-help" class="panel">
+            {{{helpTab}}}
+        </div>
+
     </div>
 
-    <div class="dialog">
+    <div class="dialog builds-dialog">
         <div class="topcoat-navigation-bar top-bar">
             <div class="topcoat-navigation-bar__item topcoat-grid__row">
-                <button id="btn-close" class="topcoat-icon-button--quiet">
+                <button class="topcoat-icon-button--quiet btn-close">
                     <span class="topcoat-icon icomatic">back</span>
                 </button>
                 <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
@@ -275,7 +294,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -290,7 +309,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -305,7 +324,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -320,7 +339,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -335,7 +354,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -350,7 +369,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -365,7 +384,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -380,7 +399,7 @@
             </div>
             <div class="controls topcoat-grid__column--3">
                 <span class="value-holder">&nbsp;</span>
-                <button class="topcoat-icon-button">
+                <button class="topcoat-icon-button btn-lock">
                     <span class="topcoat-icon icomatic">unlock</span>
                 </button>
             </div>
@@ -394,8 +413,39 @@
             </div>
             <div class="topcoat-grid__column--auto"><!-- Spacer -->&nbsp;</div>
             <div class="topcoat-navigation-bar__item right topcoat-grid__column--3">
-                <button class="topcoat-button">Cancel</button>
+                <button class="topcoat-button btn-close">Cancel</button>
                 <button class="topcoat-button">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog builds-info-dialog">
+        <div class="topcoat-navigation-bar top-bar">
+            <div class="topcoat-navigation-bar__item topcoat-grid__row">
+                <button class="topcoat-icon-button--quiet btn-close">
+                    <span class="topcoat-icon icomatic">back</span>
+                </button>
+                <div class="topcoat-navigation-bar__item topcoat-grid__column--auto center">
+                    <h1 class="topcoat-navigation-bar__title">Manage Build Settings</h1>
+                </div>
+            </div>
+        </div>
+        <div class="topcoat-navigation-bar__item topcoat-grid__row">
+            <div class="topcoat-list topcoat-grid__column--auto">
+                <h3 class="topcoat-list__header">Production Info</h3>
+                <ul class="topcoat-list__container">
+                    <li class="topcoat-list__item"><span class="label">Production Units Per Minute: </span>1645</li>
+                    <li class="topcoat-list__item"><span class="label">Production Units From Factories: </span>1645</li>
+                    <li class="topcoat-list__item"><span class="label">Production Units From Superstructure: </span>0</li>
+                    <li class="topcoat-list__item"><span class="label">Unbuilt Factories: </span>5</li>
+                    <li class="topcoat-list__item"><span class="label">Production Loss From Unbuilt Factories: </span>50</li>
+                </ul>
+            </div>
+        </div>
+        <div class="topcoat-navigation-bar bottom-bar topcoat-grid__row">
+            <div class="topcoat-grid__column--auto"><!-- Spacer -->&nbsp;</div>
+            <div class="topcoat-navigation-bar__item right topcoat-grid__column--3">
+                <button class="topcoat-button btn-close">OK</button>
             </div>
         </div>
     </div>

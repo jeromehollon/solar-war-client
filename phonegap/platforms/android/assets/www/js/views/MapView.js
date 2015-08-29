@@ -2,20 +2,23 @@ app.views.MapView = Backbone.View.extend({
   el: "#container",
 
   scale: 3, //Scale at which the world is rendered.
-  planetSize: 30,
-  starSize: 40,
+  planetSize: 25,
+  starSize: 35,
 
   //a subview
   controlView: null,
 
   initialize: function() {
     _(this).bindAll("render", "renderStars", "positionSolarObject", "animate", "mousemove", "mouseup", "mousedown",
-      "setActiveSolarObject", "solarObjectClick", "decorateSolarObject", "decoratePlanet", "decorateStar");
+      "setActiveSolarObject", "solarObjectClick", "decorateSolarObject", "decoratePlanet", "decorateStar",
+      "renderCanvas");
 
     this.collection = new app.models.GalaxyCollection();
     this.collection.fetch({reset: true, success: this.render});
 
     this.template = Handlebars.compile($("#map-view-template").html());
+    $(document).on("saveMap", this.saveMap);
+    $(document).on("restoreMap", this.restoreMap);
   },
 
   render: function () {
@@ -33,6 +36,20 @@ app.views.MapView = Backbone.View.extend({
     this.starCollection = this.collection.starCollection;
     this.planetCollection = this.collection.planetCollection;
 
+    this.renderCanvas({x: 0, y:0});
+
+
+    //setup control view
+    this.controlView = new app.views.ControlView({
+      planetCollection: this.planetCollection,
+      starCollection: this.starCollection
+    });
+    this.controlView.render();
+
+    return this;
+  },
+
+  renderCanvas: function(origin){
     this.renderWidth = this.$el.width();
     this.renderHeight = this.$el.height();
     this.renderer = new PIXI.autoDetectRenderer(this.renderWidth, this.renderHeight, {
@@ -55,14 +72,8 @@ app.views.MapView = Backbone.View.extend({
     $("#galaxy-map").on("touchmove", this.mousemove);
 
     this.firstFrame = true;
+    this.stage.position = origin;
     requestAnimationFrame(this.animate);
-
-
-    //setup control view
-    this.controlView = new app.views.ControlView();
-    this.controlView.render();
-
-    return this;
   },
 
   directRenderObject: [],
@@ -74,6 +85,7 @@ app.views.MapView = Backbone.View.extend({
       var maxX = -this.stage.position.x + this.renderWidth + 100;
       var minY = -this.stage.position.y - 100;
       var maxY = -this.stage.position.y + this.renderHeight + 100;
+
       for (var i = 0; i < this.directRenderObject.length; i++) {
         var visible =
           this.directRenderObject[i].x >= minX && this.directRenderObject[i].x <= maxX &&
@@ -133,6 +145,7 @@ app.views.MapView = Backbone.View.extend({
   },
 
   renderStars: function() {
+    this.directRenderObject = [];
     _.each(this.stars, this.positionSolarObject);
     _.each(this.planets, this.positionSolarObject);
   },
@@ -144,6 +157,7 @@ app.views.MapView = Backbone.View.extend({
       y:  body.get("y") * this.scale,
       decorated: false
     });
+    body.decorated = false;
   },
 
   decorateSolarObject: function(renderObject) {
@@ -404,6 +418,5 @@ app.views.MapView = Backbone.View.extend({
         displayObject.visible = true;
       });
     }
-  }
-
+  },
 });

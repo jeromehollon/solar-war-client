@@ -1,0 +1,35 @@
+.help-item{
+  .topic {
+    margin: 10px 2% 0px;
+    padding: 5px;
+
+    background-color: @md-clr-blue-grey-100;
+    border: 1px @md-clr-blue-grey-400 solid;
+    border-radius: 5px;
+  }
+  .info {
+    /* Initially we don't want any height, and we want the contents to be hidden */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s;
+
+    margin: 0px 2%;
+    padding: 5px;
+
+    background-color: @md-clr-blue-grey-50;
+    border-bottom: 1px @md-clr-blue-grey-400 solid;
+    border-left: 1px @md-clr-blue-grey-400 solid;
+    border-right: 1px @md-clr-blue-grey-400 solid;
+    border-radius: 0 0 5px 5px;
+  }
+
+  &.active {
+    .topic {
+      border-radius: 5px 5px 0 0;
+    }
+
+    .info {
+      max-height: 10000px;
+    }
+  }
+}

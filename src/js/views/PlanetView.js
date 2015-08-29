@@ -3,19 +3,25 @@ app.views.PlanetView = Backbone.View.extend({
   planet: null,
 
   initialize: function (options) {
-    _(this).bindAll("render", "close", "tabClick", "editBuilds", "onSlide", "onChange");
+    _(this).bindAll("render", "close", "tabClick", "editBuilds", "onSlide", "onChange", "moveClick");
     this.template = Handlebars.compile($("#planet-view-template").html());
+    this.helpTabTemplate = Handlebars.compile($("#help-planet-view-template").html());
     this.planet = options.planet;
   },
 
 
   render: function () {
-    this.$el.html(this.template({model: this.planet}));
+    var help = this.helpTabTemplate({});
+    this.$el.html(this.template({model: this.planet, helpTab: help}));
     $(this.$el).show();
 
     $("#btn-back", this.$el).on("click", this.close);
     $(".tabnav-tab", this.$el).on("click", this.tabClick);
+    $(".help-item .topic", this.$el).on("click", helpTopicClick);
+
     $(".btn-builds", this.$el).on("click", this.editBuilds);
+    $(".btn-builds-info", this.$el).on("click", this.editBuildsInfo);
+    $(".btn-move", this.$el).on("click", this.moveClick);
 
     //do the progress bars
     _($(".progress-bar", this.$el)).each(function(bar){
@@ -31,7 +37,7 @@ app.views.PlanetView = Backbone.View.extend({
     $(".dialog", this.$el).popup({
       transition: 'all 0.3s',
       scrolllock: true,
-      closeelement: '#btn-close',
+      closeelement: '.btn-close',
       escape: false
     });
 
@@ -52,7 +58,7 @@ app.views.PlanetView = Backbone.View.extend({
   },
 
   editBuilds: function(event){
-    $(".dialog").popup("show");
+    $(".builds-dialog").popup("show");
 
     var sliders = $(".slider", ".dialog")
     for(var i = 0; i < sliders.length; i++) {
@@ -63,6 +69,12 @@ app.views.PlanetView = Backbone.View.extend({
     }
     $(".slider", ".dialog").on("change", this.onChange);
     $(".slider", ".dialog").on("input", this.onSlide);
+    $(".btn-lock", ".dialog").on("click tap", this.onLockClick);
+  },
+
+  editBuildsInfo: function(event){
+    $(".builds-info-dialog").popup("show");
+    console.log($(".builds-info-dialog"));
   },
 
   close: function() {
@@ -97,11 +109,12 @@ app.views.PlanetView = Backbone.View.extend({
     }
 
     if(value + disabledQuantity > 100){
-      console.log("value + disabledQuantity > 100");
       $(event.currentTarget).val(100 - disabledQuantity);
       for(var i = 0; i < enabledSliders.length; i++){
         $(enabledSliders[i]).val(0);
       }
+
+      this.updateAllSliders(productionItems);
       this.ignoreChanges = false;
       return;
     }
@@ -154,18 +167,7 @@ app.views.PlanetView = Backbone.View.extend({
       } while (changePerSlide < 0);
     }
 
-    var allSliders = $("input[type=range]", productionItems);
-    var totalValue = 0;
-    for(var i = 0; i < allSliders.length; i++){
-
-      var value = parseInt($(allSliders[i]).val(), 10);
-      var productionItem = $(allSliders[i]).parents(".production-item");
-
-      $(".value-holder", productionItem).html(value + "%");
-
-      totalValue += parseInt($(allSliders[i]).val(), 10);
-    }
-    $("#remaining-build-points").html(100-totalValue);
+    this.updateAllSliders(productionItems);
 
     this.ignoreChanges = false;
   },
@@ -180,6 +182,20 @@ app.views.PlanetView = Backbone.View.extend({
     $(".value-holder", productionItem).html(value + "%");
   },
 
+  onLockClick: function(event) {
+    var state = $("span", event.currentTarget).html();
+    var parent = $(event.currentTarget).parents(".production-item");
+
+    if(state == "lock"){
+      $("span", event.currentTarget).html("unlock");
+      $("input[type=range]", parent).removeAttr('disabled');
+    }else{
+      $("span", event.currentTarget).html("lock");
+      $("input[type=range]", parent).attr('disabled','disabled');
+      console.log($("input[type=range]", parent));
+    }
+  },
+
   nonZero: function(elements) {
     var nonzeros = [];
     for(var i = 0; i < elements.length; i++){
@@ -188,5 +204,23 @@ app.views.PlanetView = Backbone.View.extend({
       }
     }
     return nonzeros;
+  },
+  updateAllSliders: function(productionItems) {
+    var allSliders = $("input[type=range]", productionItems);
+    var totalValue = 0;
+    for(var i = 0; i < allSliders.length; i++){
+
+      var value = parseInt($(allSliders[i]).val(), 10);
+      var productionItem = $(allSliders[i]).parents(".production-item");
+
+      $(".value-holder", productionItem).html(value + "%");
+
+      totalValue += parseInt($(allSliders[i]).val(), 10);
+    }
+    $("#remaining-build-points").html(100-totalValue);
+  },
+
+  moveClick: function(event){
+    
   }
 });
