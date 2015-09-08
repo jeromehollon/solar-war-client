@@ -11,6 +11,8 @@ app.routers.AppRouter = Backbone.Router.extend({
   },
 
   initialize: function () {
+    this.setupCollections();
+
     $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
 
       options.crossDomain ={
@@ -21,6 +23,10 @@ app.routers.AppRouter = Backbone.Router.extend({
       };*/
     });
 
+  },
+
+  setupCollections: function(){
+    app.collections.planet = new app.models.PlanetCollection();
   },
 
   loadScreen: function() {
@@ -44,9 +50,13 @@ app.routers.AppRouter = Backbone.Router.extend({
   },
 
   planet: function(id){
-    console.log(app.collections.galaxyMapPlanets.get(id));
-    app.planetView = new app.views.PlanetView({planet: app.collections.galaxyMapPlanets.get(id)});
-    app.planetView.render();
+    var planet = new app.models.Planet({id: id});
+
+    planet.fetch({success: function(){
+      console.log(planet);
+      app.planetView = new app.views.PlanetView({planet: planet});
+      app.planetView.render();
+    }});
   },
 
   about: function(){
