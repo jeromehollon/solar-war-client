@@ -3,8 +3,6 @@ app.views.ControlView = Backbone.View.extend({
   playerModel: null,
 
   playerCollection: new app.models.PlayerCollection(),
-  planetCollection: null,  //defined on initialization
-  starCollection: null, //defined on init
 
   initialize: function (options) {
     this.template = Handlebars.compile($("#control-view-template").html());
@@ -13,14 +11,10 @@ app.views.ControlView = Backbone.View.extend({
     this.playerCollection.fetch({
       success: this.render
     });
-
-    this.planetCollection = options.planetCollection;
-    this.starCollection = options.starCollection;
   },
 
 
   render: function () {
-
     if(this.playerCollection.models[0]){
       this.playerModel = this.playerCollection.models[0];
     }
@@ -66,8 +60,7 @@ app.views.ControlView = Backbone.View.extend({
     $.get(url, updateFunc);
   },
 
-  btnViewPlanetClick : function(event){
-    var view = new app.views.PlanetView({planet: this.model});
-    view.render();
+  btnViewPlanetClick : function(){
+    app.router.navigate("/planet/" + this.model.id, true);
   }
 });

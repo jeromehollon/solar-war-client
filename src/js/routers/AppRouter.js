@@ -6,7 +6,8 @@ app.routers.AppRouter = Backbone.Router.extend({
     "map":        "map",
     "about":      "about",
     "register":   "register",
-    "login":      "login"
+    "login":      "login",
+    "planet/:id": "planet"
   },
 
   initialize: function () {
@@ -40,6 +41,12 @@ app.routers.AppRouter = Backbone.Router.extend({
   map: function(){
     app.mapView = new app.views.MapView();
     app.mapView.render();
+  },
+
+  planet: function(id){
+    console.log(app.collections.galaxyMapPlanets.get(id));
+    app.planetView = new app.views.PlanetView({planet: app.collections.galaxyMapPlanets.get(id)});
+    app.planetView.render();
   },
 
   about: function(){

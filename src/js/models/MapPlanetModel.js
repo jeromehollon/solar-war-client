@@ -1,4 +1,4 @@
-app.models.Planet = Backbone.Model.extend({
+app.models.MapPlanet = Backbone.Model.extend({
   defaults: {
     type: "planet",
     decorated: false
@@ -8,8 +8,8 @@ app.models.Planet = Backbone.Model.extend({
   }
 });
 
-app.models.PlanetCollection = Backbone.Collection.extend({
-  model: app.models.Planet,
+app.models.MapPlanetCollection = Backbone.Collection.extend({
+  model: app.models.MapPlanet,
 
   initialize: function(){
   }

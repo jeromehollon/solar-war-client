@@ -1,58 +1,45 @@
-app.views.MapView = Backbone.View.extend({
-  el: "#container",
+app.views.PlanetView = Backbone.View.extend({
+  el: "#overlay",
 
   scale: 3, //Scale at which the world is rendered.
   planetSize: 25,
   starSize: 35,
 
-  //a subview
-  controlView: null,
-
-  initialize: function() {
+  initialize: function (options) {
     _(this).bindAll("render", "renderStars", "positionSolarObject", "animate", "mousemove", "mouseup", "mousedown",
       "setActiveSolarObject", "solarObjectClick", "decorateSolarObject", "decoratePlanet", "decorateStar",
       "renderCanvas");
+    this.template = Handlebars.compile($("#movement-view-template").html());
 
-    if(!app.collections.galaxy) {
-      app.collections.galaxy = new app.models.GalaxyCollection();
-      app.collections.galaxy.fetch({reset: true, success: this.render});
-    }
-
-    this.template = Handlebars.compile($("#map-view-template").html());
-    $(document).on("saveMap", this.saveMap);
-    $(document).on("restoreMap", this.restoreMap);
+    this.collection = new app.models.GalaxyCollection();
+    this.collection.fetch({reset: true, success: this.render});
   },
+
 
   render: function () {
     this.$el.html(this.template);
 
-    if(!app.collections.galaxy.models[0]) {
+    if(!this.collection.models[0]) {
       //we've not loaded yet, so just wait
       return this;
     }
     $("#loader").remove();
 
-    app.collections.galaxyMapStars = app.collections.galaxy.starCollection;
-    app.collections.galaxyMapPlanets = app.collections.galaxy.planetCollection;
 
-    this.stars = app.collections.galaxyMapStars.models;
-    this.planets = app.collections.galaxyMapPlanets.models;
+    this.stars = this.collection.starCollection.models;
+    this.planets = this.collection.planetCollection.models;
+
+    this.starCollection = this.collection.starCollection;
+    this.planetCollection = this.collection.planetCollection;
 
     this.renderCanvas({x: 0, y:0});
-
-
-    //setup control view
-    this.controlView = new app.views.ControlView();
-    this.controlView.render();
-
-    return this;
   },
 
   renderCanvas: function(origin){
     this.renderWidth = this.$el.width();
     this.renderHeight = this.$el.height();
     this.renderer = new PIXI.autoDetectRenderer(this.renderWidth, this.renderHeight, {
-      view: $("#galaxy-map")[0],
+      view: $("#movement-map")[0],
       transparent: true
     });
     this.worldStage = new PIXI.Container();
@@ -63,16 +50,24 @@ app.views.MapView = Backbone.View.extend({
     this.renderStars();
     this.renderer.render(this.stage);
 
-    $("#galaxy-map").on("mousedown", this.mousedown);
-    $("#galaxy-map").on("mouseup", this.mouseup);
-    $("#galaxy-map").on("mousemove", this.mousemove);
-    $("#galaxy-map").on("touchstart", this.mousedown);
-    $("#galaxy-map").on("touchend", this.mouseup);
-    $("#galaxy-map").on("touchmove", this.mousemove);
+    $("#movement-map").on("mousedown", this.mousedown);
+    $("#movement-map").on("mouseup", this.mouseup);
+    $("#movement-map").on("mousemove", this.mousemove);
+    $("#movement-map").on("touchstart", this.mousedown);
+    $("#movement-map").on("touchend", this.mouseup);
+    $("#movement-map").on("touchmove", this.mousemove);
 
     this.firstFrame = true;
-    this.stage.position = origin;
+    this.stage.position = transform(origin, this.renderWidth, this.renderHeight);
     requestAnimationFrame(this.animate);
+  },
+
+  // transforms position by width and height
+  transform: function(position, width, height){
+    position.x -= width/2
+    position.y += height/2;
+
+    return position;
   },
 
   directRenderObject: [],
@@ -110,11 +105,6 @@ app.views.MapView = Backbone.View.extend({
     this.renderer.render(this.stage);
     requestAnimationFrame(this.animate);
   },
-
-  events: {
-    "reset": "render"
-  },
-
   // click and drag magic
   dragging: false,
   startX: 0,
@@ -309,7 +299,7 @@ app.views.MapView = Backbone.View.extend({
       align: "left",
       fill: "#FFFFFF"
     });
-    var starLabel = new PIXI.Text("Star: " + app.collections.galaxyMapStars.findWhere({ id: body.get("starId")}).get("name"), {
+    var starLabel = new PIXI.Text("Star: " + this.starCollection.findWhere({ id: body.get("starId")}).get("name"), {
       font: "12px Raleway",
       align: "left",
       fill: "#FFFFFF"
@@ -384,13 +374,8 @@ app.views.MapView = Backbone.View.extend({
     model.set("renderChildren", halos);
     model.set("decorated", true);
   },
-
   solarObjectClick: function(event){
     this.setActiveSolarObject(event.target.model, event.target);
-    $("#control-center").trigger("targetChanged", [
-      event.target.model,
-      event.target.model.get("type")
-    ]);
   },
 
   activeSolarObject: null,
@@ -418,4 +403,5 @@ app.views.MapView = Backbone.View.extend({
       });
     }
   }
+
 });

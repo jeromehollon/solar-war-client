@@ -1,4 +1,4 @@
-app.models.Star = Backbone.Model.extend({
+app.models.MapStar = Backbone.Model.extend({
   defaults: {
     type: "star",
     decorated: false
@@ -9,8 +9,8 @@ app.models.Star = Backbone.Model.extend({
 
 });
 
-app.models.StarCollection = Backbone.Collection.extend({
-  model: app.models.Star,
+app.models.MapStarCollection = Backbone.Collection.extend({
+  model: app.models.MapStar,
 
   initialize: function(){
   }

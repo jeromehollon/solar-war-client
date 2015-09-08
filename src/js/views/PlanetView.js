@@ -12,7 +12,7 @@ app.views.PlanetView = Backbone.View.extend({
 
   render: function () {
     var help = this.helpTabTemplate({});
-    this.$el.html(this.template({model: this.planet, helpTab: help}));
+    this.$el.html(this.template({model: this.planet.attributes, helpTab: help}));
     $(this.$el).show();
 
     $("#btn-back", this.$el).on("click", this.close);
@@ -221,6 +221,6 @@ app.views.PlanetView = Backbone.View.extend({
   },
 
   moveClick: function(event){
-    
+
   }
 });

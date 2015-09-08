@@ -1,6 +1,7 @@
 var app = {
   views: {},
   models: {},
+  collections: {},
   routers: {},
   utils: {},
   adapters: {},

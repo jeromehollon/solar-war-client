@@ -15,8 +15,8 @@ app.models.GalaxyCollection = Backbone.Collection.extend({
 
   initialize: function(){
     _(this).bindAll("fetchSuccess", "fetchError", "fetch");
-    this.starCollection = new app.models.StarCollection();
-    this.planetCollection = new app.models.StarCollection();
+    this.starCollection = new app.models.MapStarCollection();
+    this.planetCollection = new app.models.MapPlanetCollection();
   },
 
   fetch: function(options) {
@@ -40,11 +40,11 @@ app.models.GalaxyCollection = Backbone.Collection.extend({
 
     var starModels = [];
     _.each(stars, function(star){
-      starModels.push(new app.models.Star(star));
+      starModels.push(new app.models.MapStar(star));
     });
     var planetModels = [];
     _.each(planets, function(planet){
-      planetModels.push(new app.models.Planet(planet));
+      planetModels.push(new app.models.MapPlanet(planet));
     });
 
     collection.starCollection.set(starModels);
